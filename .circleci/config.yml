@@ -1,0 +1,32 @@
+---
+version: 2.1
+jobs:
+  lint_and_test_code:
+    docker:
+      - image: python:3.8.0
+    steps:
+      - checkout
+      - run:
+          name: Install build & test dependencies
+          command: |
+            pip3 install 'poetry==0.12.17' 'pre-commit==1.20.0'
+            poetry config --no-interaction settings.virtualenvs.create false
+      - run:
+          name: Run pre-commit hooks on all files
+          command: pre-commit run --all-files --show-diff-on-failure
+      - run:
+          name: Build & install
+          command: poetry build && poetry install
+      - run:
+          name: Run tests
+          command: poetry run pytest
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+          destination: tr1
+workflows:
+  version: 2.1
+  pipeline:
+    jobs:
+      - lint_and_test_code
