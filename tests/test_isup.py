@@ -2,8 +2,8 @@ import urllib.parse
 
 import pytest as _pytest
 
-from isup import __version__
-from isup import isup
+from downforeveryone import __version__
+from downforeveryone import isup
 
 
 def test_version():

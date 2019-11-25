@@ -1,6 +1,6 @@
 import argparse as _argparse
 
-from isup import cli
+from downforeveryone import cli
 
 
 def test_argparser_called(mocker):

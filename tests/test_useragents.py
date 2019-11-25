@@ -1,6 +1,6 @@
 import pytest as _pytest
 
-from isup import useragents
+from downforeveryone import useragents
 
 
 @_pytest.mark.parametrize("execution_number", range(20))

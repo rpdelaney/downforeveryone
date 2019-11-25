@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "isup"
+name = "downforeveryone"
 version = "0.1.0"
 description = "checks if a website is really down via isup.me"
 authors = ["Ryan Delaney <ryan.delaney@gmail.com>"]
