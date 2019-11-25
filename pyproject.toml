@@ -21,7 +21,7 @@ flake8 = "^3.7"
 black = "=19.10b0"
 
 [tool.poetry.scripts]
-isup = 'isup.isup:main'
+isup = 'downforeveryone.isup:main'
 
 [tool.black]
 line-length = 79
