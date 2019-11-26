@@ -73,3 +73,39 @@ class TestResponseHandler:
 
         assert out == stdout
         assert err == stderr
+
+
+class TestIsUp:
+    def test_requests_dot_get_called_once(self, mocker):
+        requests_get_mock = mocker.patch("requests.get", autospec=True)
+        test_url = "https://foo.bar"
+
+        isup.isitup(test_url)
+
+        requests_get_mock.assert_called_once_with(
+            isup.query_url(test_url), headers=isup.__QUERY_HEADERS__,
+        )
+
+    def test_handle_response_called_once(self, mocker):
+        requests_get_mock = mocker.patch("requests.get")
+        handle_response_mock = mocker.patch(
+            "downforeveryone.isup.handle_response", autospec=True
+        )
+        test_url = "https://foo.bar"
+
+        isup.isitup(test_url)
+
+        handle_response_mock.assert_called_once_with(
+            requests_get_mock.return_value.json()
+        )
+
+    def test_isup_returns_handle_response(self, mocker):
+        mocker.patch("requests.get")
+        handle_response_mock = mocker.patch(
+            "downforeveryone.isup.handle_response", autospec=True
+        )
+        test_url = "https://foo.bar"
+
+        return_value = isup.isitup(test_url)
+
+        assert return_value == handle_response_mock.return_value
