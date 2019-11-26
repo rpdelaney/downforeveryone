@@ -25,12 +25,14 @@ class TestUrlJoin:
 class TestQueryUrl:
     def test_raises_typerror(self):
         with _pytest.raises(TypeError):
-            isup.query_url(0)
+            isup.query_url(0)  # type: ignore
 
     def test_urljoin_called_once(self, mocker):
-        mocker.patch.object(urllib.parse, "urljoin", autospec=True)
+        urllib_parse_mock = mocker.patch.object(
+            urllib.parse, "urljoin", autospec=True
+        )
         isup.query_url("foo")
-        urllib.parse.urljoin.assert_called_once_with(
+        urllib_parse_mock.assert_called_once_with(
             isup.__API_URL__["netloc"], isup.__API_URL__["path"] + "foo"
         )
 

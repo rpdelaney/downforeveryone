@@ -23,6 +23,7 @@ pytest-cov = "^2.8"
 pytest-mock = "^1.11"
 flake8 = "^3.7"
 black = "=19.10b0"
+mypy = "^0.740.0"
 
 [tool.poetry.scripts]
 isup = 'downforeveryone.isup:main'
