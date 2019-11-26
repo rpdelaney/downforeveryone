@@ -29,3 +29,8 @@ repos:
     rev: 3.7.9
     hooks:
       - id: flake8
+
+  - repo: git://github.com/detailyang/pre-commit-shell
+    rev: 1.0.5
+    hooks:
+      - id: shell-lint
