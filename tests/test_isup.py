@@ -18,6 +18,21 @@ def handle_response_mock(mocker):
     return mocker.patch("downforeveryone.isup.handle_response", autospec=True)
 
 
+@_pytest.fixture
+def cli_args_mock(mocker):
+    return mocker.patch("downforeveryone.cli.parse_args", autospec=True)
+
+
+@_pytest.fixture
+def isitup_mock(mocker):
+    return mocker.patch("downforeveryone.isup.isitup")
+
+
+@_pytest.fixture
+def sys_exit_mock(mocker):
+    return mocker.patch("sys.exit")
+
+
 def test_version():
     assert __version__ == "0.1.0"
 
@@ -110,3 +125,34 @@ class TestIsUp:
         return_value = isup.isitup(__TEST_URL__)
 
         assert return_value == handle_response_mock.return_value
+
+
+class TestMain:
+    def test_args_parsed(self, cli_args_mock, isitup_mock, sys_exit_mock):
+        isup.main()
+
+        cli_args_mock.assert_called_once_with()
+
+    def test_exit_code(self, cli_args_mock, isitup_mock, sys_exit_mock):
+        isup.main()
+
+        sys_exit_mock.assert_called_once_with(isitup_mock.return_value)
+
+    def test_exception_exits_3(
+        self, cli_args_mock, isitup_mock, sys_exit_mock
+    ):
+        isitup_mock.side_effect = Exception
+
+        isup.main()
+
+        sys_exit_mock.assert_called_once_with(3)
+
+    def test_exception_prints_traceback(
+        self, cli_args_mock, isitup_mock, sys_exit_mock, mocker
+    ):
+        isitup_mock.side_effect = Exception
+        traceback_mock = mocker.patch("traceback.print_exc")
+
+        isup.main()
+
+        traceback_mock.assert_called_once_with()
