@@ -75,7 +75,3 @@ def main() -> None:
         exit_code = 3
         traceback.print_exc()
     sys.exit(exit_code)
-
-
-if __name__ == "__main__":
-    main()
