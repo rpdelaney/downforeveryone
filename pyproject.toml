@@ -6,7 +6,7 @@ authors = ["Ryan Delaney <ryan.delaney@gmail.com>"]
 readme = "README.rst"
 repository = "https://github.com/rpdelaney/isup"
 homepage = "https://github.com/rpdelaney/isup"
-keywords = [
+classifiers = [
     "Environment :: Console",
     "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3 :: Only",
