@@ -1,11 +1,14 @@
 downforeveryone
 ======================
-|CIRCLECI| |LICENSE|
+|VERSION| |CIRCLECI| |LICENSE| |MAINTAINED|
 
-.. |CIRCLECI| image:: https://circleci.com/gh/rpdelaney/downforeveryone/tree/master.svg?style=svg
+.. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/downforeveryone
    :target: https://circleci.com/gh/rpdelaney/downforeveryone/tree/master
 .. |LICENSE| image:: https://img.shields.io/badge/license-Apache%202.0-informational
    :target: https://www.apache.org/licenses/LICENSE-2.0.txt
+.. |MAINTAINED| image:: https://img.shields.io/maintenance/yes/2019?logoColor=informational&style=plastic
+.. |VERSION| image:: https://img.shields.io/pypi/v/downforeveryone
+   :target: https://pypi.org/project/downforeveryone
 
 Checks if a website is down for everyone or just you, via isup.me.
 
