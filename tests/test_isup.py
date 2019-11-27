@@ -5,6 +5,18 @@ import pytest as _pytest
 from downforeveryone import __version__
 from downforeveryone import isup
 
+__TEST_URL__ = "https://foo.bar"
+
+
+@_pytest.fixture
+def requests_get_mock(mocker):
+    return mocker.patch("requests.get", autospec=True)
+
+
+@_pytest.fixture
+def handle_response_mock(mocker):
+    return mocker.patch("downforeveryone.isup.handle_response", autospec=True)
+
 
 def test_version():
     assert __version__ == "0.1.0"
@@ -76,36 +88,25 @@ class TestResponseHandler:
 
 
 class TestIsUp:
-    def test_requests_dot_get_called_once(self, mocker):
-        requests_get_mock = mocker.patch("requests.get", autospec=True)
-        test_url = "https://foo.bar"
-
-        isup.isitup(test_url)
+    def test_requests_dot_get_called_once(self, requests_get_mock):
+        isup.isitup(__TEST_URL__)
 
         requests_get_mock.assert_called_once_with(
-            isup.query_url(test_url), headers=isup.__QUERY_HEADERS__,
+            isup.query_url(__TEST_URL__), headers=isup.__QUERY_HEADERS__,
         )
 
-    def test_handle_response_called_once(self, mocker):
-        requests_get_mock = mocker.patch("requests.get")
-        handle_response_mock = mocker.patch(
-            "downforeveryone.isup.handle_response", autospec=True
-        )
-        test_url = "https://foo.bar"
-
-        isup.isitup(test_url)
+    def test_handle_response_called_once(
+        self, requests_get_mock, handle_response_mock
+    ):
+        isup.isitup(__TEST_URL__)
 
         handle_response_mock.assert_called_once_with(
             requests_get_mock.return_value.json()
         )
 
-    def test_isup_returns_handle_response(self, mocker):
-        mocker.patch("requests.get")
-        handle_response_mock = mocker.patch(
-            "downforeveryone.isup.handle_response", autospec=True
-        )
-        test_url = "https://foo.bar"
-
-        return_value = isup.isitup(test_url)
+    def test_isup_returns_handle_response(
+        self, requests_get_mock, handle_response_mock
+    ):
+        return_value = isup.isitup(__TEST_URL__)
 
         assert return_value == handle_response_mock.return_value
