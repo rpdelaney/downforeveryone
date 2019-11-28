@@ -20,12 +20,13 @@ jobs:
           command: poetry build && poetry install
       - run:
           name: Run tests
-          command: poetry run pytest
+          command: |
+            mkdir test-reports
+            poetry run pytest --junitxml=test-reports/junit.xml
       - store_test_results:
-          path: test-results
+          path: test-reports
       - store_artifacts:
-          path: test-results
-          destination: tr1
+          path: test-reports
 workflows:
   version: 2.1
   pipeline:
