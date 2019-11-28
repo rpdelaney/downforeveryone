@@ -19,14 +19,22 @@ jobs:
           name: Build & install
           command: poetry build && poetry install
       - run:
+          name: Set up test reporting
+          command: |
+            curl -L https://s3.amazonaws.com/codeclimate/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+            ./cc-test-reporter before-build
+      - run:
           name: Run tests
           command: |
-            mkdir test-reports
-            poetry run pytest --junitxml=test-reports/junit.xml
+            poetry run pytest --full-trace --cov-report=xml:coverage.xml
       - store_test_results:
-          path: test-reports
+          path: coverage.xml
       - store_artifacts:
-          path: test-reports
+          path: dist
+      - run:
+          name: Publish test results
+          command: ./cc-test-reporter after-build --coverage-input-type coverage.py
 workflows:
   version: 2.1
   pipeline:
