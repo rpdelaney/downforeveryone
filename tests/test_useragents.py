@@ -1,5 +1,4 @@
 import pytest as _pytest
-
 from downforeveryone import useragents
 
 

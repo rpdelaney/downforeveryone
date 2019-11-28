@@ -15,9 +15,7 @@ from typing import Any, Dict
 
 import requests
 
-from . import cli
-from . import useragents
-
+from . import cli, useragents
 
 __API_URL__ = {"netloc": "https://api.downfor.cloud", "path": "httpcheck/"}
 __QUERY_HEADERS__ = {
