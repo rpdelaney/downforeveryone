@@ -11,6 +11,7 @@ Exit status:
 import sys
 import traceback
 import urllib.parse
+from typing import Any, Dict
 
 import requests
 
@@ -36,7 +37,7 @@ def query_url(url: str) -> str:
     )
 
 
-def handle_response(response: dict) -> int:
+def handle_response(response: Dict[str, Any]) -> int:
     isdown = response.get("isDown")
 
     if isdown is True:

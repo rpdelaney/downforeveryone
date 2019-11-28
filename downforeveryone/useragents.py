@@ -326,5 +326,5 @@ USER_AGENTS = [
 ]
 
 
-def random_agent():
+def random_agent() -> str:
     return random.choice(USER_AGENTS)
