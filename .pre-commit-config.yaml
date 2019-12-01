@@ -16,7 +16,6 @@ repos:
       - id: detect-private-key
       - id: debug-statements
       - id: check-docstring-first
-      - id: check-json
       - id: check-toml
       - id: check-yaml
 
