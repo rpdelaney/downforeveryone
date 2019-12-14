@@ -1,3 +1,4 @@
+"""Provide a random user agent."""
 # flake8: noqa
 import random
 
@@ -327,4 +328,5 @@ USER_AGENTS = [
 
 
 def random_agent() -> str:
+    """Return a random user agent string."""
     return random.choice(USER_AGENTS)

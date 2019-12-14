@@ -1,12 +1,17 @@
-"""
-A command-line tool to call the down for everyone API
+"""Checks if a website is down for everyone or just you, via isup.me.
 
-Exit status:
+A typical usage example when importing this module:
 
-    0       The site is down
-    1       The site is up
-    3       There was a problem with the API request, or an unhandled
-                exception
+    import downforeveryone.isup as isup
+
+    isup_status == isup.isitup("https://a.website")
+
+    if isup_status == 0:
+        print("down for everyone")
+    elif isup_status == 1:
+        print("it's just you")
+    elif isup_status == 3:
+        print("there was an error")
 """
 import sys
 import traceback
@@ -30,12 +35,35 @@ __QUERY_HEADERS__ = {
 
 
 def query_url(url: str) -> str:
+    """Return a URL with isup.me API endpoint and our target.
+
+    Args:
+        url: URL to the site to be checked
+
+    Returns:
+        The composed API endpoint URL.
+
+    Raises:
+        TypeError: If the url argument cannot be concatenated with a string.
+
+    """
     return urllib.parse.urljoin(
         __API_URL__["netloc"], f"{__API_URL__['path']}" + url
     )
 
 
 def handle_response(response: Dict[str, Any]) -> int:
+    """Handle isup.me API response.
+
+    Args:
+        response: A dict representation of the received json response
+
+    Returns: A status code
+        0       The site is down
+        1       The site is up
+        3       Error state
+
+    """
     isdown = response.get("isDown")
 
     if isdown is True:
@@ -53,12 +81,16 @@ def handle_response(response: Dict[str, Any]) -> int:
 
 
 def isitup(url: str) -> int:
-    """
-    Checks if a URL is up. Returns a status code.
+    """Check if a URL is up. Returns a status code.
 
-    0       The site is down
-    1       The site is up
-    3       Error state
+    Args:
+        url: URL to the site to be checked
+
+    Returns: A status code
+        0       The site is down
+        1       The site is up
+        3       Error state
+
     """
     r = requests.get(query_url(url), headers=__QUERY_HEADERS__,)
 
@@ -66,6 +98,7 @@ def isitup(url: str) -> int:
 
 
 def main() -> None:
+    """Provide the console entrypoint."""
     args = cli.parse_args()
 
     try:
