@@ -4,8 +4,8 @@ version = "0.1.1"
 description = "checks if a website is really down via isup.me"
 authors = ["Ryan Delaney <ryan.delaney@gmail.com>"]
 readme = "README.rst"
-repository = "https://github.com/rpdelaney/isup"
-homepage = "https://github.com/rpdelaney/isup"
+repository = "https://github.com/rpdelaney/downforeveryone"
+homepage = "https://pypi.org/project/downforeveryone"
 classifiers = [
     "Environment :: Console",
     "License :: OSI Approved :: Apache Software License",
