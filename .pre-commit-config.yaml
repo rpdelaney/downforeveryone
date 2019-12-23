@@ -14,7 +14,6 @@ repos:
       - id: check-json
       - id: check-merge-conflict
       - id: detect-private-key
-      - id: debug-statements
       - id: check-docstring-first
       - id: check-toml
       - id: check-yaml
@@ -23,7 +22,7 @@ repos:
     rev: 3.7.9
     hooks:
       - id: flake8
-        additional_dependencies: [flake8-bugbear, flake8-docstrings]
+        additional_dependencies: [flake8-bugbear, flake8-docstrings, flake8-breakpoint]
 
   - repo: git://github.com/detailyang/pre-commit-shell
     rev: 1.0.5
