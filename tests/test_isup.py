@@ -1,6 +1,7 @@
 import urllib.parse
 
 import pytest as _pytest
+
 from downforeveryone import __version__, isup
 
 __TEST_URL__ = "https://foo.bar"
