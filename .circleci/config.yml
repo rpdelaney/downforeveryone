@@ -22,6 +22,7 @@ jobs:
           name: Set up test reporting
           command: |
             curl -L https://s3.amazonaws.com/codeclimate/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            sha256sum --check ./.circleci/cc-test-reporter.sha256sum
             chmod +x ./cc-test-reporter
             ./cc-test-reporter before-build
       - run:
