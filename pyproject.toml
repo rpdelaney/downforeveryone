@@ -17,7 +17,7 @@ python = "^3.8"
 requests = "^2.22"
 
 [tool.poetry.dev-dependencies]
-mock = "^3.0"
+mock = "^4.0"
 pytest = "^5.3"
 pytest-cov = "^2.8"
 pytest-mock = "^2.0"
