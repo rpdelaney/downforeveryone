@@ -119,11 +119,11 @@ category = "dev"
 description = "A plugin for flake8 finding likely bugs and design problems in your program. Contains warnings that don't belong in pyflakes and pycodestyle."
 name = "flake8-bugbear"
 optional = false
-python-versions = ">=3.5"
-version = "19.8.0"
+python-versions = ">=3.6"
+version = "20.1.4"
 
 [package.dependencies]
-attrs = "*"
+attrs = ">=19.2.0"
 flake8 = ">=3.0.0"
 
 [[package]]
@@ -404,7 +404,7 @@ python-versions = "*"
 version = "0.1.7"
 
 [metadata]
-content-hash = "be354006a01fe3cf7177aef70d068b89e5fd76a1c9d3d9d046e1d386a1da2b2b"
+content-hash = "cd6b0b5d0abf155d5260b4a6e43521b317fe32e6ff1071665932136c1a868292"
 python-versions = "^3.8"
 
 [metadata.hashes]
@@ -420,7 +420,7 @@ coverage = ["0101888bd1592a20ccadae081ba10e8b204d20235d18d05c6f7d5e904a38fc10", 
 entrypoints = ["589f874b313739ad35be6e0cd7efde2a4e9b6fea91edcc34e58ecbb8dbe56d19", "c70dd71abe5a8c85e55e12c19bd91ccfeec11a6e99044204511f9ed547d48451"]
 flake8 = ["45681a117ecc81e870cbf1262835ae4af5e7a8b08e40b944a8a6e6b895914cfb", "49356e766643ad15072a789a20915d3c91dc89fd313ccd71802303fd67e4deca"]
 flake8-breakpoint = ["27e0cb132647f9ef348b4a3c3126e7350bedbb22e8e221cd11712a223855ea0b", "5bc70d478f0437a3655d094e1d2fca81ddacabaa84d99db45ad3630bf2004064"]
-flake8-bugbear = ["d8c466ea79d5020cb20bf9f11cf349026e09517a42264f313d3f6fddb83e0571", "ded4d282778969b5ab5530ceba7aa1a9f1b86fa7618fc96a19a1d512331640f8"]
+flake8-bugbear = ["a3ddc03ec28ba2296fc6f89444d1c946a6b76460f859795b35b77d4920a51b63", "bd02e4b009fb153fe6072c31c52aeab5b133d508095befb2ffcf3b41c4823162"]
 flake8-docstrings = ["3d5a31c7ec6b7367ea6506a87ec293b94a0a46c0bce2bb4975b7f1d09b6f3717", "a256ba91bc52307bef1de59e2a009c3cf61c3d0952dbe035d6ff7208940c2edc"]
 flake8-plugin-utils = ["1ac5eb19773d5c7fdde60b0d901ae86be9c751bf697c61fdb6609b86872f3c6e", "24b4a3b216ad588951d3d7adef4645dcb3b32a33b878e03baa790b5a66bf3a73"]
 idna = ["c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407", "ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"]
