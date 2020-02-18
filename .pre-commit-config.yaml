@@ -25,6 +25,7 @@ repos:
         language: system
         entry: poetry check
         files: 'pyproject\.toml'
+        pass_filenames: false
 
   - repo: https://github.com/psf/black
     rev: 19.10b0
