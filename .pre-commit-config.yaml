@@ -1,5 +1,10 @@
 ---
 repos:
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+      - id: check-useless-excludes
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.4.0
     hooks:
@@ -10,8 +15,6 @@ repos:
         args: [--markdown-linebreak-ext=md]
       - id: check-added-large-files
       - id: check-executables-have-shebangs
-      - id: check-symlinks
-      - id: check-json
       - id: check-merge-conflict
       - id: detect-private-key
       - id: check-docstring-first
