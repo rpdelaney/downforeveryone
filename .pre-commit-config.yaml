@@ -18,6 +18,14 @@ repos:
       - id: check-toml
       - id: check-yaml
 
+  - repo: local
+    hooks:
+      - id: pyproject.toml
+        name: validate pyproject.toml
+        language: system
+        entry: poetry check
+        files: 'pyproject\.toml'
+
   - repo: https://github.com/psf/black
     rev: 19.10b0
     hooks:
