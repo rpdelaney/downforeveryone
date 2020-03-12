@@ -12,11 +12,11 @@ jobs:
             pip3 install --progress-bar off 'poetry==1.0.3' 'pre-commit==1.20.0'
             apt-get update && apt-get install shellcheck
       - run:
-          name: Run pre-commit hooks on all files
-          command: pre-commit run --all-files --show-diff-on-failure
-      - run:
           name: Build & install
           command: poetry build && poetry install
+      - run:
+          name: Run pre-commit hooks on all files
+          command: pre-commit run --all-files --show-diff-on-failure
       - run:
           name: Set up test reporting
           command: |
