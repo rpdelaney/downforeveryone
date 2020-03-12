@@ -29,27 +29,40 @@ repos:
         entry: poetry check
         files: 'pyproject\.toml'
         pass_filenames: false
+      - id: isort
+        name: isort
+        stages: [commit]
+        language: system
+        entry: poetry run isort
+        types: [python]
 
-  - repo: https://github.com/psf/black
-    rev: 19.10b0
-    hooks:
       - id: black
+        name: black
+        stages: [commit]
+        language: system
+        entry: poetry run black
+        types: [python]
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.9
-    hooks:
       - id: flake8
-        additional_dependencies: [flake8-bugbear, flake8-docstrings, flake8-comprehensions, flake8-breakpoint]
+        name: flake8
+        stages: [commit]
+        language: system
+        entry: poetry run flake8
+        types: [python]
 
-  - repo: git://github.com/detailyang/pre-commit-shell
-    rev: 1.0.5
-    hooks:
-      - id: shell-lint
+      - id: shellcheck
+        name: shellcheck
+        stages: [commit]
+        language: system
+        entry: shellcheck
+        types: [shell]
 
-  - repo: git://github.com/pre-commit/mirrors-mypy
-    rev: v0.761
-    hooks:
       - id: mypy
+        name: mypy
+        stages: [commit]
+        language: system
+        entry: poetry run mypy
+        types: [python]
 
   - repo: https://github.com/asottile/seed-isort-config
     rev: v1.9.4
