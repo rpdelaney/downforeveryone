@@ -19,13 +19,6 @@ jobs:
           name: Run pre-commit hooks on all files
           command: pre-commit run --all-files --show-diff-on-failure
       - run:
-          name: Set up test reporting
-          command: |
-            curl -L https://s3.amazonaws.com/codeclimate/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            sha256sum --check ./.circleci/cc-test-reporter.sha256sum
-            chmod +x ./cc-test-reporter
-            ./cc-test-reporter before-build
-      - run:
           name: Run tests
           command: |
             poetry run pytest --full-trace --cov-report=xml:coverage.xml
@@ -33,11 +26,18 @@ jobs:
           path: coverage.xml
       - store_artifacts:
           path: dist
+  codeclimate_report:
+    docker:
+      - image: codeclimate/codeclimate
+    steps:
       - run:
-          name: Publish test results
+          name: Report test coverage
           command: ./cc-test-reporter after-build --coverage-input-type coverage.py
 workflows:
   version: 2.1
   pipeline:
     jobs:
       - lint_and_test_code
+      - codeclimate_report:
+          requires:
+            - lint_and_test_code
