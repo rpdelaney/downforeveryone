@@ -2,7 +2,7 @@ import urllib.parse
 
 import pytest as _pytest
 
-from downforeveryone import __version__, isup
+from downforeveryone import isup
 
 __TEST_URL__ = "https://foo.bar"
 
@@ -30,10 +30,6 @@ def isitup_mock(mocker):
 @_pytest.fixture
 def sys_exit_mock(mocker):
     return mocker.patch("sys.exit")
-
-
-def test_version():
-    assert __version__ == "0.1.2"
 
 
 class TestUrlJoin:
