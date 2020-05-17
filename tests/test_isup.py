@@ -36,8 +36,15 @@ class TestUrlJoin:
     @_pytest.mark.parametrize(
         ("url", "expected"),
         [
-            ("google.com", "https://api.downfor.cloud/httpcheck/google.com"),
-            ("8.8.8.8", "https://api.downfor.cloud/httpcheck/8.8.8.8"),
+            (
+                "google.com",
+                "https://api.downfor.cloud/httpcheck/https://google.com",
+            ),
+            ("8.8.8.8", "https://api.downfor.cloud/httpcheck/https://8.8.8.8"),
+            (
+                "https://google.com/?hello",
+                "https://api.downfor.cloud/httpcheck/https://google.com",
+            ),
         ],
     )
     def test_urljoin(self, url, expected):
@@ -45,18 +52,12 @@ class TestUrlJoin:
 
 
 class TestQueryUrl:
-    def test_raises_typerror(self):
-        with _pytest.raises(TypeError):
-            isup.query_url(0)  # type: ignore
-
-    def test_urljoin_called_once(self, mocker):
+    def test_urljoin_not_called(self, mocker):
         urllib_parse_mock = mocker.patch.object(
             urllib.parse, "urljoin", autospec=True
         )
         isup.query_url("foo")
-        urllib_parse_mock.assert_called_once_with(
-            isup.__API_URL__["netloc"], isup.__API_URL__["path"] + "foo"
-        )
+        urllib_parse_mock.assert_not_called()
 
 
 class TestResponseHandler:
