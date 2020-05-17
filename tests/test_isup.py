@@ -63,11 +63,12 @@ class TestResponseHandler:
     @_pytest.mark.parametrize(
         ("response", "expected"),
         [
-            ({"isDown": True}, 0),
-            ({"isDown": False}, 1),
-            ({"isDown": None}, 3),
-            ({"isDown": 0}, 3),
-            ({"isDown": 1}, 3),
+            ({"statusCode": "429", "isDown": True}, 3),
+            ({"statusCode": "200", "isDown": True}, 0),
+            ({"statusCode": "200", "isDown": False}, 1),
+            ({"statusCode": "200", "isDown": None}, 3),
+            ({"statusCode": "200", "isDown": 0}, 3),
+            ({"statusCode": "200", "isDown": 1}, 3),
             ({}, 3),
         ],
     )
@@ -77,15 +78,27 @@ class TestResponseHandler:
     @_pytest.mark.parametrize(
         ("response", "stdout", "stderr"),
         [
-            ({"isDown": True}, "down for everyone.\n", ""),
-            ({"isDown": False}, "just you.\n", ""),
             (
-                {"isDown": None},
+                {"statusCode": "200", "isDown": True},
+                "down for everyone.\n",
+                "",
+            ),
+            ({"statusCode": "200", "isDown": False}, "just you.\n", ""),
+            (
+                {"statusCode": "200", "isDown": None},
+                "",
                 (
                     "There was a problem with the request. "
-                    "response was:\n{'isDown': None}\n"
+                    "response was:\n{'statusCode': '200', 'isDown': None}\n"
                 ),
+            ),
+            (
+                {"statusCode": "429", "isDown": True},
                 "",
+                (
+                    "There was a problem with the request. "
+                    "response was:\n{'statusCode': '429', 'isDown': True}\n"
+                ),
             ),
         ],
     )
