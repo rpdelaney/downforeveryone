@@ -15,7 +15,7 @@ A typical usage example when importing this module:
 """
 import sys
 import traceback
-import urllib.parse as parse
+import urllib.parse
 from typing import Any, Dict
 
 import requests
@@ -37,29 +37,18 @@ __QUERY_HEADERS__ = {
 def query_url(url: str) -> str:
     """Return a URL with isup.me API endpoint and our target.
 
-    If the scheme is unspecified or is unsecured http, it will be coerced to
-    https. Any query and fragment properties of a url will be stripped.
-
     Args:
         url: URL to the site to be checked
 
     Returns:
         The composed API endpoint URL.
+
+    Raises:
+        TypeError: If the url argument cannot be concatenated with a string.
+
     """
-    o = parse.urlsplit(url)
-    scheme = "https" if (not o.scheme or o.scheme == "http") else o.scheme
-    query_url = parse.SplitResult(
-        scheme=scheme,
-        netloc=o.netloc if o.netloc else o.path,
-        path="",
-        query="",
-        fragment="",
-    )
-    return (
-        __API_URL__["netloc"]
-        + "/"
-        + f"{__API_URL__['path']}"
-        + parse.urlunsplit(query_url)
+    return urllib.parse.urljoin(
+        __API_URL__["netloc"], f"{__API_URL__['path']}" + url
     )
 
 
