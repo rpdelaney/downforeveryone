@@ -63,7 +63,7 @@ class TestResponseHandler:
     @_pytest.mark.parametrize(
         ("response", "expected"),
         [
-            ({"statusCode": 429, "isDown": True}, 3),
+            ({"statusCode": 429, "isDown": True}, 0),
             ({"statusCode": 200, "isDown": True}, 0),
             ({"statusCode": 200, "isDown": False}, 1),
             ({"statusCode": 200, "isDown": None}, 3),
@@ -88,13 +88,18 @@ class TestResponseHandler:
                     "response was:\n{'statusCode': 200, 'isDown': None}\n"
                 ),
             ),
+            ({"statusCode": 429, "isDown": True}, "down for everyone.\n", "",),
             (
-                {"statusCode": 429, "isDown": True},
+                {
+                    "statusCode": 530,
+                    "statusText": "",
+                    "isDown": True,
+                    "returnedUrl": "http://otuhaeiudapcid.com",
+                    "requestedDomain": "otuhaeiudapcid.com",
+                    "lastChecked": 1592789590165,
+                },
+                "down for everyone.\n",
                 "",
-                (
-                    "There was a problem with the request. "
-                    "response was:\n{'statusCode': 429, 'isDown': True}\n"
-                ),
             ),
         ],
     )

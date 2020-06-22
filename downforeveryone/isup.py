@@ -64,10 +64,7 @@ def handle_response(response: Dict[str, Any]) -> int:
         3       Error state
 
     """
-    if response.get("statusCode") == 200:
-        isdown = response.get("isDown")
-    else:
-        isdown = None
+    isdown = response.get("isDown")
 
     if isdown is True:
         print("down for everyone.")
