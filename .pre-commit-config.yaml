@@ -74,3 +74,8 @@ repos:
     hooks:
       - id: isort
         additional_dependencies: [toml]
+
+  - repo: https://github.com/PyCQA/doc8
+    rev: 0.8.1
+    hooks:
+      - id: doc8

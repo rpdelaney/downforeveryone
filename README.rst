@@ -1,6 +1,7 @@
 downforeveryone
 ======================
-|LANGUAGE| |VERSION| |STYLE| |LICENSE| |CIRCLECI| |COVERAGE| |MAINTAINABILITY| |MAINTAINED|
+|LANGUAGE| |VERSION| |STYLE| |LICENSE| |CIRCLECI| |COVERAGE| |MAINTAINABILITY|
+|MAINTAINED|
 
 .. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/downforeveryone
    :target: https://circleci.com/gh/rpdelaney/downforeveryone/tree/master
@@ -22,7 +23,7 @@ Checks if a website is down for everyone or just you, via isup.me.
 Installation
 ------------
 
-::
+.. code-block :: console
 
     pip3 install downforeveryone
 
@@ -33,7 +34,7 @@ Development
 To install development dependencies, you will need `poetry <https://docs.pipenv.org/en/latest/>`_
 and `pre-commit <https://pre-commit.com/>`_.
 
-::
+.. code-block :: console
 
     poetry install
     pre-commit install --install-hooks
@@ -41,7 +42,7 @@ and `pre-commit <https://pre-commit.com/>`_.
 Usage
 -----
 
-::
+.. code-block :: console
 
     $ isup -h
     usage: isup [-h] url
