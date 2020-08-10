@@ -9,7 +9,7 @@ __TEST_URL__ = "https://foo.bar"
 
 
 @_pytest.fixture
-def fake_request_success(mocker):
+def mock_request_success(mocker):
     fake = mocker.patch("requests.models.Response", autospec=True)
     fake.ok = True
     fake.status_code = 200
@@ -17,7 +17,7 @@ def fake_request_success(mocker):
 
 
 @_pytest.fixture
-def fake_request_failure(mocker):
+def mock_request_failure(mocker):
     fake = mocker.patch("requests.models.Response", autospec=False)
     fake.ok = False
     fake.status_code = 404
@@ -26,9 +26,9 @@ def fake_request_failure(mocker):
 
 
 @_pytest.fixture
-def requests_get_mock(mocker, fake_request_success):
+def requests_get_mock(mocker, mock_request_success):
     mock_response = mocker.patch("requests.get", autospec=True)
-    mock_response.return_value = fake_request_success
+    mock_response.return_value = mock_request_success
     return mock_response
 
 
@@ -159,10 +159,10 @@ class TestIsUp:
         self,
         requests_get_mock,
         handle_response_mock,
-        fake_request_failure,
+        mock_request_failure,
         capsys,
     ):
-        requests_get_mock.return_value = fake_request_failure
+        requests_get_mock.return_value = mock_request_failure
 
         isup.isitup(__TEST_URL__)
 
