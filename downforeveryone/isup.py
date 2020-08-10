@@ -16,6 +16,7 @@ A typical usage example when importing this module:
 import sys
 import traceback
 import urllib.parse
+from http import HTTPStatus
 from typing import Any, Dict
 
 import requests
@@ -94,6 +95,18 @@ def isitup(url: str) -> int:
 
     """
     r = requests.get(query_url(url), headers=__QUERY_HEADERS__,)
+    if r.status_code != HTTPStatus.OK.value:
+        status_name = [
+            status.description
+            for status in list(HTTPStatus)
+            if status.value == r.status_code
+        ]
+        print(
+            f"HTTP request failure. Status: {r.status_code} "
+            f"Description: {status_name}",
+            file=sys.stderr,
+        )
+        return 3
 
     return handle_response(r.json())
 

@@ -8,8 +8,26 @@ __TEST_URL__ = "https://foo.bar"
 
 
 @_pytest.fixture
-def requests_get_mock(mocker):
-    return mocker.patch("requests.get", autospec=True)
+def fake_request_success(mocker):
+    fake = mocker.patch("requests.models.Response", autospec=True)
+    fake.ok = True
+    fake.status_code = 200
+    return fake
+
+
+@_pytest.fixture
+def fake_request_failure(mocker):
+    fake = mocker.patch("requests.models.Response", autospec=False)
+    fake.ok = False
+    fake.status_code = 404
+    return fake
+
+
+@_pytest.fixture
+def requests_get_mock(mocker, fake_request_success):
+    mock_response = mocker.patch("requests.get", autospec=True)
+    mock_response.return_value = fake_request_success
+    return mock_response
 
 
 @_pytest.fixture
@@ -134,6 +152,23 @@ class TestIsUp:
         return_value = isup.isitup(__TEST_URL__)
 
         assert return_value == handle_response_mock.return_value
+
+    def test_isup_error_with_description(
+        self,
+        requests_get_mock,
+        handle_response_mock,
+        fake_request_failure,
+        capsys,
+    ):
+        requests_get_mock.return_value = fake_request_failure
+
+        isup.isitup(__TEST_URL__)
+
+        captured = capsys.readouterr()
+        assert (
+            captured.err == "HTTP request failure. Status: 404 "
+            "Description: ['Nothing matches the given URI']\n"
+        )
 
 
 class TestMain:
