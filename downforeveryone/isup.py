@@ -17,6 +17,7 @@ import sys
 import traceback
 import urllib.parse
 from http import HTTPStatus
+from json.decoder import JSONDecodeError
 from typing import Any, Dict
 
 import requests
@@ -108,7 +109,12 @@ def isitup(url: str) -> int:
         )
         return 3
 
-    return handle_response(r.json())
+    try:
+        jsondata = r.json()
+    except JSONDecodeError:
+        return 3
+    else:
+        return handle_response(jsondata)
 
 
 def main() -> None:

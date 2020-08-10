@@ -1,4 +1,5 @@
 import urllib.parse
+from json.decoder import JSONDecodeError
 
 import pytest as _pytest
 
@@ -20,6 +21,7 @@ def fake_request_failure(mocker):
     fake = mocker.patch("requests.models.Response", autospec=False)
     fake.ok = False
     fake.status_code = 404
+    fake.json.return_value = mocker.Mock(side_effect=JSONDecodeError)
     return fake
 
 
@@ -169,6 +171,13 @@ class TestIsUp:
             captured.err == "HTTP request failure. Status: 404 "
             "Description: ['Nothing matches the given URI']\n"
         )
+
+    def test_isup_handles_broken_json(
+        self, requests_get_mock, handle_response_mock, fake_request_failure
+    ):
+        requests_get_mock.return_value = fake_request_failure
+
+        assert isup.isitup(__TEST_URL__) == 3
 
 
 class TestMain:
