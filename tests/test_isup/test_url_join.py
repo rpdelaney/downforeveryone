@@ -6,8 +6,8 @@ from downforeveryone import isup
 @_pytest.mark.parametrize(
     ("url", "expected"),
     [
-        ("google.com", "https://api.downfor.cloud/httpcheck/google.com"),
-        ("8.8.8.8", "https://api.downfor.cloud/httpcheck/8.8.8.8"),
+        ("google.com", "https://api-prod.downfor.cloud/httpcheck/google.com"),
+        ("8.8.8.8", "https://api-prod.downfor.cloud/httpcheck/8.8.8.8"),
     ],
 )
 def test_urljoin(url, expected):
