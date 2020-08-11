@@ -173,9 +173,9 @@ class TestIsUp:
         )
 
     def test_isup_handles_broken_json(
-        self, requests_get_mock, handle_response_mock, fake_request_failure
+        self, requests_get_mock, handle_response_mock, mock_request_failure
     ):
-        requests_get_mock.return_value = fake_request_failure
+        requests_get_mock.return_value = mock_request_failure
 
         assert isup.isitup(__TEST_URL__) == 3
 
