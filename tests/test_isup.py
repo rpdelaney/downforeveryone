@@ -18,6 +18,11 @@ def mock_request_success(mocker):
 
 @_pytest.fixture
 def mock_request_failure(mocker):
+    # This test does not mock the response object as intended, which
+    # is causing test coverage to fall below the minimum as the JSONDecodeError
+    # is not actually being raised.
+    # TODO: Look into https://github.com/getsentry/responses for mocking
+    # requests response objects
     fake = mocker.patch("requests.models.Response", autospec=False)
     fake.ok = False
     fake.status_code = 404
