@@ -5,18 +5,6 @@ import pytest as _pytest
 from downforeveryone import isup
 
 
-class TestUrlJoin:
-    @_pytest.mark.parametrize(
-        ("url", "expected"),
-        [
-            ("google.com", "https://api.downfor.cloud/httpcheck/google.com"),
-            ("8.8.8.8", "https://api.downfor.cloud/httpcheck/8.8.8.8"),
-        ],
-    )
-    def test_urljoin(self, url, expected):
-        assert isup.query_url(url) == expected
-
-
 class TestQueryUrl:
     def test_raises_typerror(self):
         with _pytest.raises(TypeError):
