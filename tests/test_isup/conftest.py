@@ -1,6 +1,19 @@
 from json.decoder import JSONDecodeError
 
 import pytest as _pytest
+import responses
+
+from downforeveryone import isup
+
+
+@_pytest.fixture
+def mocked_response_args(url="https://foo.bar"):
+    return {
+        "method": responses.GET,
+        "url": isup.query_url(url),
+        "body": "{}",
+        "content_type": "application/json",
+    }
 
 
 @_pytest.fixture
