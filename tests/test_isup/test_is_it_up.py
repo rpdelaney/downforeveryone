@@ -1,3 +1,5 @@
+import json
+
 import responses
 
 from downforeveryone import isup
@@ -14,24 +16,34 @@ def test_requests_dot_get_called_once(fake_response_args):
     responses.assert_call_count(isup.query_url(__TEST_URL__), 1)
 
 
-def test_handle_response_called_once(requests_get_mock, handle_response_mock):
+@responses.activate
+def test_handle_response_called_once(fake_response_args, handle_response_mock):
+    responses.add(**fake_response_args)
+
     isup.isitup(__TEST_URL__)
 
     handle_response_mock.assert_called_once_with(
-        requests_get_mock.return_value.json()
+        json.loads(fake_response_args["body"])
     )
 
 
-def test_isup_returns_handle_response(requests_get_mock, handle_response_mock):
+@responses.activate
+def test_isup_returns_handle_response(
+    fake_response_args, handle_response_mock
+):
+    responses.add(**fake_response_args)
+
     return_value = isup.isitup(__TEST_URL__)
 
     assert return_value == handle_response_mock.return_value
 
 
+@responses.activate
 def test_isup_error_with_description(
-    requests_get_mock, handle_response_mock, mock_request_failure, capsys,
+    fake_response_args, handle_response_mock, capsys
 ):
-    requests_get_mock.return_value = mock_request_failure
+    fake_response_args["status"] = 404
+    responses.add(**fake_response_args)
 
     isup.isitup(__TEST_URL__)
 
