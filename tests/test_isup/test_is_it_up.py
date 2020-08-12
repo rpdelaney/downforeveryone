@@ -1,6 +1,7 @@
 import json
 
 import responses
+from requests.exceptions import RequestException
 
 from downforeveryone import isup
 
@@ -62,3 +63,16 @@ def test_isup_handles_broken_json(fake_response_args):
     responses.add(**fake_response_args)
 
     assert isup.isitup(__TEST_URL__) == 3
+
+
+@responses.activate
+def test_isup_handles_request_exception(fake_response_args, capsys):
+    exc = RequestException("Exception message.")
+    fake_response_args["body"] = exc
+
+    responses.add(**fake_response_args)
+
+    assert isup.isitup(__TEST_URL__) == 3
+
+    captured = capsys.readouterr()
+    assert captured.err == "RequestException: Exception message.\n"

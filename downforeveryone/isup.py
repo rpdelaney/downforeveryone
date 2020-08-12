@@ -21,6 +21,7 @@ from json.decoder import JSONDecodeError
 from typing import Any, Dict
 
 import requests
+from requests.exceptions import RequestException
 
 from . import cli, useragents
 
@@ -98,7 +99,16 @@ def isitup(url: str) -> int:
         3       Error state
 
     """
-    r = requests.get(query_url(url), headers=__QUERY_HEADERS__,)
+    try:
+        r = requests.get(query_url(url), headers=__QUERY_HEADERS__,)
+    except RequestException as rexc:
+        title = type(rexc).__name__
+        message = str(rexc)
+        print(
+            f"{title}: {message}", file=sys.stderr,
+        )
+        return 3
+
     if r.status_code != HTTPStatus.OK.value:
         status_name = [
             status.description
