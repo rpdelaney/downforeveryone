@@ -11,7 +11,7 @@ jobs:
           command: |
             pip3 install --progress-bar off 'poetry==1.0.3' 'pre-commit==1.20.0'
             poetry config --no-interaction virtualenvs.create false
-            apt-get update && apt-get install shellcheck
+            apt-get update && apt-get install shellcheck && apt-get install direnv
       - run:
           name: Build & install
           command: poetry build && poetry install
@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            poetry run pytest --full-trace --cov-report=xml:coverage.xml
+            direnv exec poetry run pytest --full-trace --cov-report=xml:coverage.xml
       - store_test_results:
           path: coverage.xml
       - store_artifacts:
