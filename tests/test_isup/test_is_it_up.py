@@ -42,9 +42,11 @@ def test_isup_error_with_description(
     )
 
 
-def test_isup_handles_broken_json(
-    requests_get_mock, handle_response_mock, mock_request_failure
-):
-    requests_get_mock.return_value = mock_request_failure
+@responses.activate
+def test_isup_handles_broken_json(fake_response_args):
+    fake_response_args["body"] = "This isn't valid json."
+    fake_response_args["status"] = 200
+
+    responses.add(**fake_response_args)
 
     assert isup.isitup(__TEST_URL__) == 3
