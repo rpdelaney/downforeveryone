@@ -40,7 +40,7 @@ jobs:
       - run:
           name: Run integration test
           command: |
-            poetry run isup google.com
+            [[ "$(poetry run isup google.com)" == "just you." ]]
 workflows:
   version: 2.1
   pipeline:
