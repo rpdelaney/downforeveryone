@@ -28,7 +28,8 @@ jobs:
       - run:
           name: Run tests
           command: |
-            direnv exec poetry run pytest --full-trace --cov-report=xml:coverage.xml
+            direnv allow
+            poetry run pytest --full-trace --cov-report=xml:coverage.xml
       - store_test_results:
           path: coverage.xml
       - store_artifacts:
