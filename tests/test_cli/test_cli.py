@@ -18,7 +18,6 @@ def test_argparser_called(argparse_mock):
 
 def test_only_url_arg_added(argparse_mock):
     cli.parse_args()
+    mock_add_argument = argparse_mock.return_value.add_argument
 
-    argparse_mock.return_value.add_argument.assert_called_once_with(
-        "url", help="url to test"
-    )
+    mock_add_argument.assert_called_once_with("url", help="url to test")
