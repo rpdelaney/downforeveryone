@@ -1,3 +1,6 @@
+import os
+import pathlib
+
 import toml
 
 import downforeveryone
@@ -9,7 +12,8 @@ def test_version_set():
 
 
 def test_version_matches_pyproject():
-    with open("pyproject.toml") as f:
+    root_dir = pathlib.Path(__file__).parent.parent.parent
+    with open(os.path.join(root_dir, "pyproject.toml")) as f:
         pyproject = toml.load(f)
         pyproject_version = pyproject.get("tool").get("poetry").get("version")
 
