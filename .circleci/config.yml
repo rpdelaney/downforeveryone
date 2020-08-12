@@ -45,3 +45,14 @@ workflows:
   pipeline:
     jobs:
       - lint_and_test_code
+
+  daily:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - lint_and_test_code
