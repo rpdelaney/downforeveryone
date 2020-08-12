@@ -1,14 +1,17 @@
+import responses
+
 from downforeveryone import isup
 
 __TEST_URL__ = "https://foo.bar"
 
 
-def test_requests_dot_get_called_once(requests_get_mock):
+@responses.activate
+def test_requests_dot_get_called_once(mocked_response_args):
+    responses.add(**mocked_response_args)
+
     isup.isitup(__TEST_URL__)
 
-    requests_get_mock.assert_called_once_with(
-        isup.query_url(__TEST_URL__), headers=isup.__QUERY_HEADERS__,
-    )
+    responses.assert_call_count(isup.query_url(__TEST_URL__), 1)
 
 
 def test_handle_response_called_once(requests_get_mock, handle_response_mock):
