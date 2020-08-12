@@ -35,6 +35,11 @@ responses = "^0.10.16"
 [tool.poetry.scripts]
 isup = 'downforeveryone.isup:main'
 
+[tool.pytest.ini_options]
+console_output_style = "progress"
+addopts = "--cov=downforeveryone"
+mock_use_standalone_module = true
+
 [tool.black]
 line-length = 79
 target_version = ["py38"]
