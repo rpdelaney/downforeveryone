@@ -1,14 +1,17 @@
+import responses
+
 from downforeveryone import isup
 
 __TEST_URL__ = "https://foo.bar"
 
 
-def test_requests_dot_get_called_once(requests_get_mock):
+@responses.activate
+def test_requests_dot_get_called_once(fake_response_args):
+    responses.add(**fake_response_args)
+
     isup.isitup(__TEST_URL__)
 
-    requests_get_mock.assert_called_once_with(
-        isup.query_url(__TEST_URL__), headers=isup.__QUERY_HEADERS__,
-    )
+    responses.assert_call_count(isup.query_url(__TEST_URL__), 1)
 
 
 def test_handle_response_called_once(requests_get_mock, handle_response_mock):
@@ -39,9 +42,11 @@ def test_isup_error_with_description(
     )
 
 
-def test_isup_handles_broken_json(
-    requests_get_mock, handle_response_mock, mock_request_failure
-):
-    requests_get_mock.return_value = mock_request_failure
+@responses.activate
+def test_isup_handles_broken_json(fake_response_args):
+    fake_response_args["body"] = "This isn't valid json."
+    fake_response_args["status"] = 200
+
+    responses.add(**fake_response_args)
 
     assert isup.isitup(__TEST_URL__) == 3
