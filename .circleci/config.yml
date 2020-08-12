@@ -37,23 +37,9 @@ jobs:
       - run:
           name: Publish test results
           command: ./cc-test-reporter after-build --coverage-input-type coverage.py
-      - run:
-          name: Run integration test
-          command: |
-            [[ "$(poetry run isup google.com)" == "just you." ]]
+
 workflows:
   version: 2.1
   pipeline:
-    jobs:
-      - lint_and_test_code
-
-  daily:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - master
     jobs:
       - lint_and_test_code
