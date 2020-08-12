@@ -1,6 +1,6 @@
 import pytest as _pytest
 
-from downforeveryone import cli
+from downforeveryone import __version__, cli
 
 
 @_pytest.fixture
@@ -16,8 +16,13 @@ def test_argparser_called(argparse_mock):
     )
 
 
-def test_only_url_arg_added(argparse_mock):
+def test_args_added(argparse_mock):
     cli.parse_args()
     mock_add_argument = argparse_mock.return_value.add_argument
 
-    mock_add_argument.assert_called_once_with("url", help="url to test")
+    mock_add_argument.assert_any_call("url", help="url to test")
+    mock_add_argument.assert_any_call(
+        "--version", action="version", version=f"{__version__}"
+    )
+
+    assert mock_add_argument.call_count == 2
