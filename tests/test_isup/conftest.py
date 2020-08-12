@@ -7,7 +7,7 @@ from downforeveryone import isup
 
 
 @_pytest.fixture
-def mocked_response_args(url="https://foo.bar", status=200):
+def fake_response_args(url="https://foo.bar", status=200):
     return {
         "method": responses.GET,
         "url": isup.query_url(url),

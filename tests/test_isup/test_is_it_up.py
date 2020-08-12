@@ -6,8 +6,8 @@ __TEST_URL__ = "https://foo.bar"
 
 
 @responses.activate
-def test_requests_dot_get_called_once(mocked_response_args):
-    responses.add(**mocked_response_args)
+def test_requests_dot_get_called_once(fake_response_args):
+    responses.add(**fake_response_args)
 
     isup.isitup(__TEST_URL__)
 
