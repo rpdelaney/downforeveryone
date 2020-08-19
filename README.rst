@@ -27,18 +27,6 @@ Installation
 
     pip3 install downforeveryone
 
-============
-Development
-============
-
-To install development dependencies, you will need `poetry <https://docs.pipenv.org/en/latest/>`_
-and `pre-commit <https://pre-commit.com/>`_.
-
-.. code-block :: console
-
-    poetry install
-    pre-commit install --install-hooks
-
 Usage
 -----
 
@@ -60,3 +48,17 @@ Usage
     $ isup thingthatsdown.com ; echo $?
     it's down.
     0
+
+============
+Development
+============
+
+To install development dependencies, you will need `poetry <https://docs.pipenv.org/en/latest/>`_
+and `pre-commit <https://pre-commit.com/>`_.
+
+.. code-block :: console
+
+    pre-commit install --install-hooks
+    poetry install
+
+`direnv <https://direnv.net/>` is optional, but recommended for convenience.
