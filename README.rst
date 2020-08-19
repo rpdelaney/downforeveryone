@@ -61,4 +61,4 @@ and `pre-commit <https://pre-commit.com/>`_.
     pre-commit install --install-hooks
     poetry install
 
-`direnv <https://direnv.net/>` is optional, but recommended for convenience.
+`direnv <https://direnv.net/>`_ is optional, but recommended for convenience.
