@@ -30,7 +30,7 @@ flake8-docstrings = "^1.5"
 flake8-breakpoint = "^1.1"
 pytest-icdiff = "^0.5"
 toml = "^0.10.1"
-responses = "^0.10.16"
+responses = "^0.11.0"
 
 [tool.poetry.scripts]
 isup = 'downforeveryone.isup:main'
