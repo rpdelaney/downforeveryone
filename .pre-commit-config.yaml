@@ -64,12 +64,6 @@ repos:
         entry: poetry run mypy
         types: [python]
 
-  - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.3.2
-    hooks:
-      - id: isort
-        additional_dependencies: [toml]
-
   - repo: https://github.com/PyCQA/doc8
     rev: 0.8.1rc3
     hooks:
