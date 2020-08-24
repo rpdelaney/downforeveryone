@@ -1,6 +1,7 @@
 import os
 import pathlib
 
+import semver
 import toml
 
 import downforeveryone
@@ -9,6 +10,10 @@ import downforeveryone
 def test_version_set():
     assert isinstance(downforeveryone.__version__, str)
     assert len(downforeveryone.__version__) > 0
+
+
+def test_version_is_semver():
+    assert semver.VersionInfo.isvalid(downforeveryone.__version__)
 
 
 def test_version_matches_pyproject():
