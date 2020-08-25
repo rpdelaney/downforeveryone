@@ -29,6 +29,7 @@ repos:
         entry: poetry check
         files: 'pyproject\.toml'
         pass_filenames: false
+
       - id: isort
         name: isort
         stages: [commit]
