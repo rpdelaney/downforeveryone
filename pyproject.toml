@@ -30,7 +30,8 @@ flake8-docstrings = "^1.5"
 flake8-breakpoint = "^1.1"
 pytest-icdiff = "^0.5"
 toml = "^0.10.1"
-responses = "^0.10.16"
+responses = "^0.11.0"
+semver = "^2.10.2"
 
 [tool.poetry.scripts]
 isup = 'downforeveryone.isup:main'
@@ -47,8 +48,6 @@ target_version = ["py38"]
 [tool.isort]
 combine_star = true
 indent='    '
-known_first_party = []
-known_third_party = ["pytest", "requests", "responses", "toml"]
 length_sort = false
 line_length = 79
 multi_line_output = 3
