@@ -100,12 +100,16 @@ def isitup(url: str) -> int:
 
     """
     try:
-        r = requests.get(query_url(url), headers=__QUERY_HEADERS__,)
+        r = requests.get(
+            query_url(url),
+            headers=__QUERY_HEADERS__,
+        )
     except RequestException as rexc:
         title = type(rexc).__name__
         message = str(rexc)
         print(
-            f"{title}: {message}", file=sys.stderr,
+            f"{title}: {message}",
+            file=sys.stderr,
         )
         return 3
 

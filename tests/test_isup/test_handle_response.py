@@ -22,7 +22,11 @@ def test_return_values(response, expected):
 @_pytest.mark.parametrize(
     ("response", "stdout", "stderr"),
     [
-        ({"statusCode": 200, "isDown": True}, "down for everyone.\n", "",),
+        (
+            {"statusCode": 200, "isDown": True},
+            "down for everyone.\n",
+            "",
+        ),
         ({"statusCode": 200, "isDown": False}, "just you.\n", ""),
         (
             {"statusCode": 200, "isDown": None},
@@ -32,7 +36,11 @@ def test_return_values(response, expected):
                 "response was:\n{'statusCode': 200, 'isDown': None}\n"
             ),
         ),
-        ({"statusCode": 429, "isDown": True}, "down for everyone.\n", "",),
+        (
+            {"statusCode": 429, "isDown": True},
+            "down for everyone.\n",
+            "",
+        ),
         (
             {
                 "statusCode": 530,
