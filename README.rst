@@ -1,7 +1,7 @@
 downforeveryone
 ======================
-|LANGUAGE| |VERSION| |STYLE| |LICENSE| |CIRCLECI| |COVERAGE| |MAINTAINABILITY|
-|MAINTAINED| |DEPENDABOT|
+|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI| |COVERAGE|
+|MAINTAINABILITY| |DEPENDABOT| |STYLE|
 
 .. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/downforeveryone
    :target: https://circleci.com/gh/rpdelaney/downforeveryone/tree/master
