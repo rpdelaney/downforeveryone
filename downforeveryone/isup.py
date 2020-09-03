@@ -1,6 +1,6 @@
 """Checks if a website is down for everyone or just you, via isup.me.
 
-A typical usage example when importing this module:
+Usage example when importing this module:
 
     import downforeveryone.isup as isup
 
@@ -81,7 +81,7 @@ def handle_response(response: Dict[str, Any]) -> int:
     else:
         print(
             "There was a problem with the request. response was:\n"
-            "{}".format(response),
+            f"{response}",
             file=sys.stderr,
         )
         return 3
