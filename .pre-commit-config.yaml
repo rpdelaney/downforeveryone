@@ -23,6 +23,12 @@ repos:
 
   - repo: local
     hooks:
+      - id: pytest
+        name: run all tests
+        stages: [push]
+        language: system
+        entry: poetry run pytest --full-trace
+
       - id: pyproject.toml
         name: validate pyproject.toml
         language: system
