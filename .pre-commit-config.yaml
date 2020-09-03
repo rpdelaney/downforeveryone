@@ -1,4 +1,6 @@
 ---
+default_stages: [commit]
+
 repos:
   - repo: meta
     hooks:
@@ -39,7 +41,6 @@ repos:
 
       - id: version
         name: verify version is set correctly
-        stages: [commit]
         language: system
         entry: pytest --quiet --no-header --no-summary --no-cov -k version
         files: 'pyproject\.toml|downforeveryone/__init__.py'
@@ -47,35 +48,30 @@ repos:
 
       - id: isort
         name: isort
-        stages: [commit]
         language: system
         entry: poetry run isort
         types: [python]
 
       - id: black
         name: black
-        stages: [commit]
         language: system
         entry: poetry run black
         types: [python]
 
       - id: flake8
         name: flake8
-        stages: [commit]
         language: system
         entry: poetry run flake8
         types: [python]
 
       - id: shellcheck
         name: shellcheck
-        stages: [commit]
         language: system
         entry: shellcheck
         types: [shell]
 
       - id: mypy
         name: mypy
-        stages: [commit]
         language: system
         entry: poetry run mypy
         types: [python]
