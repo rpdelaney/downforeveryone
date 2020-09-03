@@ -32,6 +32,7 @@ repos:
 
       - id: version
         name: verify version is set correctly
+        stages: [commit]
         language: system
         entry: pytest --quiet --no-header --no-summary --no-cov -k version
         files: 'pyproject\.toml|downforeveryone/__init__.py'
