@@ -28,6 +28,7 @@ repos:
         stages: [push]
         language: system
         entry: poetry run pytest --full-trace
+        pass_filenames: false
 
       - id: pyproject.toml
         name: validate pyproject.toml
