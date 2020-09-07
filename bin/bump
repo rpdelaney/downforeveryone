@@ -10,7 +10,6 @@ import argparse
 import os
 import pathlib
 import subprocess
-from subprocess import CalledProcessError
 from typing import Any, Dict, List, cast
 
 import semver
@@ -49,13 +48,11 @@ def subshell(cmd: List[str]) -> bool:
     """Take a command as a list of strings and run it in a subshell.  If the
     command succeeds, return True. Otherwise, return False."""
     proc = subprocess.run(cmd)
-    try:
-        proc.check_returncode()
-    except CalledProcessError as cpe:
+    if proc.returncode == 0:
+        return True
+    else:
         print(f"Command {cmd} returned non-zero exit status {proc.returncode}")
         return False
-
-    return True
 
 
 def bump_version(current_version: str) -> str:
@@ -105,7 +102,7 @@ def main() -> None:
         f.write(lines)
 
     # commit the changes
-    subshell(["git", "reset",]) and subshell(
+    subshell(["git", "reset"]) and subshell(
         [
             "git",
             "commit",
