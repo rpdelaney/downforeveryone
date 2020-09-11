@@ -4,7 +4,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = "downforeveryone"
-version = "0.4.2"
+version = "1.0.0"
 description = "checks if a website is really down via isup.me"
 authors = [ "Ryan Delaney <ryan.patrick.delaney@protonmail.com>",]
 readme = "README.rst"
