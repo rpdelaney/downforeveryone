@@ -14,7 +14,7 @@ def test_requests_dot_get_called_once(fake_response_args):
 
     isup.isitup(__TEST_URL__)
 
-    responses.assert_call_count(isup.query_url(__TEST_URL__), 1)
+    responses.assert_call_count(isup._query_url(__TEST_URL__), 1)
 
 
 @responses.activate

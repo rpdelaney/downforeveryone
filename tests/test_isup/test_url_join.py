@@ -11,4 +11,4 @@ from downforeveryone import isup
     ],
 )
 def test_urljoin(url, expected):
-    assert isup.query_url(url) == expected
+    assert isup._query_url(url) == expected

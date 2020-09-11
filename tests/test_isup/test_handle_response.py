@@ -16,7 +16,7 @@ from downforeveryone import isup
     ],
 )
 def test_return_values(response, expected):
-    assert isup.handle_response(response)[1] == expected
+    assert isup._handle_response(response)[1] == expected
 
 
 @_pytest.mark.parametrize(
@@ -60,7 +60,7 @@ def test_return_values(response, expected):
     ],
 )
 def test_output(fake_response, expected_message, expected_status):
-    result_message, result_status = isup.handle_response(fake_response)
+    result_message, result_status = isup._handle_response(fake_response)
 
     assert result_message == expected_message
     assert result_status == expected_status

@@ -8,7 +8,7 @@ from downforeveryone import cli, isup
 def fake_response_args(url="https://foo.bar", status=200):
     return {
         "method": responses.GET,
-        "url": isup.query_url(url),
+        "url": isup._query_url(url),
         "body": "{}",
         "status": status,
         "content_type": "application/json",
@@ -27,7 +27,7 @@ def mock_cli_args(mocker):
 
 @_pytest.fixture
 def handle_response_mock(mocker):
-    return mocker.patch("downforeveryone.isup.handle_response", autospec=True)
+    return mocker.patch("downforeveryone.isup._handle_response", autospec=True)
 
 
 @_pytest.fixture

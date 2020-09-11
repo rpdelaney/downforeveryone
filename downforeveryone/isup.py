@@ -40,7 +40,7 @@ __QUERY_HEADERS__ = {
 }
 
 
-def query_url(url: str) -> str:
+def _query_url(url: str) -> str:
     """Return a URL with isup.me API endpoint and our target.
 
     Args:
@@ -58,7 +58,7 @@ def query_url(url: str) -> str:
     )
 
 
-def handle_response(response: Dict[str, Any]) -> Tuple[str, int]:
+def _handle_response(response: Dict[str, Any]) -> Tuple[str, int]:
     """Handle isup.me API response.
 
     Args:
@@ -97,7 +97,7 @@ def isitup(url: str) -> Tuple[str, int]:
     """
     try:
         r = requests.get(
-            query_url(url),
+            _query_url(url),
             headers=__QUERY_HEADERS__,
         )
     except RequestException as rexc:
@@ -123,7 +123,7 @@ def isitup(url: str) -> Tuple[str, int]:
         message = str(jde)
         return (f"{title}: {message}"), 3
     else:
-        return handle_response(jsondata)
+        return _handle_response(jsondata)
 
 
 def main() -> None:
