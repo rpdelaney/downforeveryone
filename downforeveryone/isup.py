@@ -4,7 +4,7 @@ Usage example when importing this module:
 
     import downforeveryone.isup as isup
 
-    isup_status == isup.isitup("https://a.website")
+    isup_message, isup_status == isup.isitup("https://a.website")
 
     if isup_status == 0:
         print("down for everyone")
@@ -89,7 +89,7 @@ def isitup(url: str) -> Tuple[str, int]:
     Args:
         url: URL to the site to be checked
 
-    Returns: A status code
+    Returns: A human-readable status message, and a status code
         0       The site is down
         1       The site is up
         3       Error state
