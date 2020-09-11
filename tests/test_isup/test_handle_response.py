@@ -16,30 +16,34 @@ from downforeveryone import isup
     ],
 )
 def test_return_values(response, expected):
-    assert isup.handle_response(response) == expected
+    assert isup.handle_response(response)[1] == expected
 
 
 @_pytest.mark.parametrize(
-    ("response", "stdout", "stderr"),
+    ("fake_response", "expected_message", "expected_status"),
     [
         (
             {"statusCode": 200, "isDown": True},
-            "down for everyone.\n",
-            "",
+            "down for everyone.",
+            0,
         ),
-        ({"statusCode": 200, "isDown": False}, "just you.\n", ""),
+        (
+            {"statusCode": 200, "isDown": False},
+            "just you.",
+            1,
+        ),
         (
             {"statusCode": 200, "isDown": None},
-            "",
             (
                 "There was a problem with the request. "
-                "response was:\n{'statusCode': 200, 'isDown': None}\n"
+                "response was:\n{'statusCode': 200, 'isDown': None}"
             ),
+            3,
         ),
         (
             {"statusCode": 429, "isDown": True},
-            "down for everyone.\n",
-            "",
+            "down for everyone.",
+            0,
         ),
         (
             {
@@ -50,14 +54,13 @@ def test_return_values(response, expected):
                 "requestedDomain": "otuhaeiudapcid.com",
                 "lastChecked": 1592789590165,
             },
-            "down for everyone.\n",
-            "",
+            "down for everyone.",
+            0,
         ),
     ],
 )
-def test_output(response, stdout, stderr, capsys):
-    isup.handle_response(response)
-    out, err = capsys.readouterr()
+def test_output(fake_response, expected_message, expected_status):
+    result_message, result_status = isup.handle_response(fake_response)
 
-    assert out == stdout
-    assert err == stderr
+    assert result_message == expected_message
+    assert result_status == expected_status

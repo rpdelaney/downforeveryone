@@ -1,7 +1,7 @@
 import pytest as _pytest
 import responses
 
-from downforeveryone import isup
+from downforeveryone import cli, isup
 
 
 @_pytest.fixture
@@ -13,6 +13,16 @@ def fake_response_args(url="https://foo.bar", status=200):
         "status": status,
         "content_type": "application/json",
     }
+
+
+@_pytest.fixture
+def fake_cli_args(mocker):
+    return cli.parse_args("http://foo.bar")
+
+
+@_pytest.fixture
+def mock_cli_args(mocker):
+    return mocker.patch("downforeveryone.cli.parse_args")
 
 
 @_pytest.fixture

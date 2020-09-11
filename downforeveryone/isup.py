@@ -18,7 +18,7 @@ import traceback
 import urllib.parse
 from http import HTTPStatus
 from json.decoder import JSONDecodeError
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 
 import requests
 from requests.exceptions import RequestException
@@ -58,7 +58,7 @@ def query_url(url: str) -> str:
     )
 
 
-def handle_response(response: Dict[str, Any]) -> int:
+def handle_response(response: Dict[str, Any]) -> Tuple[str, int]:
     """Handle isup.me API response.
 
     Args:
@@ -73,21 +73,17 @@ def handle_response(response: Dict[str, Any]) -> int:
     isdown = response.get("isDown")
 
     if isdown is True:
-        print("down for everyone.")
-        return 0
+        return "down for everyone.", 0
     elif isdown is False:
-        print("just you.")
-        return 1
+        return "just you.", 1
     else:
-        print(
+        return (
             "There was a problem with the request. response was:\n"
-            f"{response}",
-            file=sys.stderr,
-        )
-        return 3
+            f"{response}"
+        ), 3
 
 
-def isitup(url: str) -> int:
+def isitup(url: str) -> Tuple[str, int]:
     """Check if a URL is up. Returns a status code.
 
     Args:
@@ -107,11 +103,7 @@ def isitup(url: str) -> int:
     except RequestException as rexc:
         title = type(rexc).__name__
         message = str(rexc)
-        print(
-            f"{title}: {message}",
-            file=sys.stderr,
-        )
-        return 3
+        return (f"{title}: {message}"), 3
 
     if r.status_code != HTTPStatus.OK.value:
         status_name = [
@@ -119,17 +111,17 @@ def isitup(url: str) -> int:
             for status in list(HTTPStatus)
             if status.value == r.status_code
         ]
-        print(
+        return (
             f"HTTP request failure. Status: {r.status_code} "
-            f"Description: {status_name}",
-            file=sys.stderr,
-        )
-        return 3
+            f"Description: {status_name}"
+        ), 3
 
     try:
         jsondata = r.json()
-    except JSONDecodeError:
-        return 3
+    except JSONDecodeError as jde:
+        title = type(jde).__name__
+        message = str(jde)
+        return (f"{title}: {message}"), 3
     else:
         return handle_response(jsondata)
 
@@ -139,8 +131,12 @@ def main() -> None:
     args = cli.parse_args()
 
     try:
-        exit_code = isitup(args.url)
+        message, exit_code = isitup(args.url)
     except Exception:
         exit_code = 3
         traceback.print_exc()
+    else:
+        output_device = sys.stderr if exit_code == 3 else sys.stdout
+        print(message, file=output_device)
+
     sys.exit(exit_code)
