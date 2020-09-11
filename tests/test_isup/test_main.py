@@ -3,36 +3,36 @@ import pytest as _pytest
 from downforeveryone import isup
 
 
-def test_args_parsed(cli_args_mock, isitup_mock, sys_exit_mock):
+def test_args_parsed(mock_cli_args, mock_isitup, mock_sys_exit):
     isup.main()
 
-    cli_args_mock.assert_called_once_with()
+    mock_cli_args.assert_called_once_with()
 
 
-def test_exit_code(cli_args_mock, isitup_mock, sys_exit_mock):
-    isitup_mock.return_value = "", 5
+def test_exit_code(mock_cli_args, mock_isitup, mock_sys_exit):
+    mock_isitup.return_value = "", 5
     isup.main()
 
-    sys_exit_mock.assert_called_once_with(5)
+    mock_sys_exit.assert_called_once_with(5)
 
 
-def test_exception_exits_3(cli_args_mock, isitup_mock, sys_exit_mock):
-    isitup_mock.side_effect = Exception
+def test_exception_exits_3(mock_cli_args, mock_isitup, mock_sys_exit):
+    mock_isitup.side_effect = Exception
 
     isup.main()
 
-    sys_exit_mock.assert_called_once_with(3)
+    mock_sys_exit.assert_called_once_with(3)
 
 
 def test_exception_prints_traceback(
-    cli_args_mock, isitup_mock, sys_exit_mock, mocker
+    mock_cli_args, mock_isitup, mock_sys_exit, mocker
 ):
-    isitup_mock.side_effect = Exception
-    traceback_mock = mocker.patch("traceback.print_exc")
+    mock_isitup.side_effect = Exception
+    mock_traceback = mocker.patch("traceback.print_exc")
 
     isup.main()
 
-    traceback_mock.assert_called_once_with()
+    mock_traceback.assert_called_once_with()
 
 
 @_pytest.mark.parametrize(
@@ -44,9 +44,9 @@ def test_exception_prints_traceback(
     ],
 )
 def test_output(
-    cli_args_mock,
-    isitup_mock,
-    sys_exit_mock,
+    mock_cli_args,
+    mock_isitup,
+    mock_sys_exit,
     capsys,
     mocker,
     message,
@@ -54,7 +54,7 @@ def test_output(
     stdout,
     stderr,
 ):
-    isitup_mock.return_value = (message, exit_code)
+    mock_isitup.return_value = (message, exit_code)
 
     isup.main()
     out, err = capsys.readouterr()

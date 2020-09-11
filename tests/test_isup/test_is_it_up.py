@@ -18,29 +18,29 @@ def test_requests_dot_get_called_once(fake_response_args):
 
 
 @responses.activate
-def test_handle_response_called_once(fake_response_args, handle_response_mock):
+def test_handle_response_called_once(fake_response_args, mock_handle_response):
     responses.add(**fake_response_args)
 
     isup.isitup(__TEST_URL__)
 
-    handle_response_mock.assert_called_once_with(
+    mock_handle_response.assert_called_once_with(
         json.loads(fake_response_args["body"])
     )
 
 
 @responses.activate
 def test_isup_returns_handle_response(
-    fake_response_args, handle_response_mock
+    fake_response_args, mock_handle_response
 ):
     responses.add(**fake_response_args)
 
     return_value = isup.isitup(__TEST_URL__)
 
-    assert return_value == handle_response_mock.return_value
+    assert return_value == mock_handle_response.return_value
 
 
 @responses.activate
-def test_isup_error_with_description(fake_response_args, handle_response_mock):
+def test_isup_error_with_description(fake_response_args, mock_handle_response):
     fake_response_args["status"] = 404
     responses.add(**fake_response_args)
 
