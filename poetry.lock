@@ -387,7 +387,7 @@ pytest = "*"
 
 [[package]]
 name = "pytest-mock"
-version = "3.3.1"
+version = "3.4.0"
 description = "Thin-wrapper around the mock package for easier use with pytest"
 category = "dev"
 optional = false
@@ -517,7 +517,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7, <3.9"
-content-hash = "44d11950fdd8a0cd2086fa87da8ade1f195722c8a24fba2ebf52445c57376740"
+content-hash = "226763c542fdce586054e0cd96a0391716063cf126d95c27013d0a6c5272ffb9"
 
 [metadata.files]
 appdirs = [
@@ -702,8 +702,8 @@ pytest-icdiff = [
     {file = "pytest-icdiff-0.5.tar.gz", hash = "sha256:3a14097f4385665cb04330e6ae09a3dd430375f717e94482af6944470ad5f100"},
 ]
 pytest-mock = [
-    {file = "pytest-mock-3.3.1.tar.gz", hash = "sha256:a4d6d37329e4a893e77d9ffa89e838dd2b45d5dc099984cf03c703ac8411bb82"},
-    {file = "pytest_mock-3.3.1-py3-none-any.whl", hash = "sha256:024e405ad382646318c4281948aadf6fe1135632bea9cc67366ea0c4098ef5f2"},
+    {file = "pytest-mock-3.4.0.tar.gz", hash = "sha256:c3981f5edee6c4d1942250a60d9b39d38d5585398de1bfce057f925bdda720f4"},
+    {file = "pytest_mock-3.4.0-py3-none-any.whl", hash = "sha256:c0fc979afac4aaba545cbd01e9c20736eb3fefb0a066558764b07d3de8f04ed3"},
 ]
 regex = [
     {file = "regex-2020.11.11-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:dd7bee615680d940dd44ac0a479f2bc5f73d6ca63a5915cd8d30739c14ca522c"},
