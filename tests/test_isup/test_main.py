@@ -11,6 +11,7 @@ def test_args_parsed(mock_cli_args, mock_isitup, mock_sys_exit):
 
 def test_exit_code(mock_cli_args, mock_isitup, mock_sys_exit):
     mock_isitup.return_value = "", 5
+
     isup.main()
 
     mock_sys_exit.assert_called_once_with(5)
