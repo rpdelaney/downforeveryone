@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Install build & test dependencies
           command: |
-            pip3 install --disable-pip-version-check --progress-bar off 'poetry==1.0.9' 'pre-commit==2.4.0'
+            pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
             poetry config --no-interaction virtualenvs.create false
             apt-get update && apt-get install shellcheck && apt-get install direnv
       - run:
