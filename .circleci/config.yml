@@ -30,6 +30,7 @@ jobs:
           mkdir -p buildevents/bin
           date +%s > buildevents/build_start
       - run: |
+          go version
           go env
           go get -v github.com/honeycombio/buildevents
       - run: cp $GOPATH/bin/buildevents buildevents/bin/
