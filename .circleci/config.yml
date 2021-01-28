@@ -30,7 +30,7 @@ jobs:
           mkdir -p buildevents/bin
           date +%s > buildevents/build_start
       - run: |
-          curl -L -o buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64
+          curl -L -o buildevents/bin/buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64
       - run: cp $GOPATH/bin/buildevents buildevents/bin/
       - persist_to_workspace:
           root: buildevents
