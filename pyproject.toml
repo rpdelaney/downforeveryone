@@ -24,7 +24,7 @@ line_length = 79
 multi_line_output = 3
 
 [tool.poetry.dependencies]
-python = ">=3.7, <3.9"
+python = ">=3.7, <4"
 requests = "^2.22"
 
 [tool.poetry.dev-dependencies]
