@@ -18,7 +18,7 @@ commands:
       - steps: << parameters.steps >>
       - run:
           name: finishing span for job
-          command: buildevents step $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID $STEP_START $CIRCLE_JOB
+          command: buildevents/bin/buildevents step $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID $STEP_START $CIRCLE_JOB
           when: always
 
 jobs:
@@ -46,7 +46,7 @@ jobs:
     steps:
       - attach_workspace:
           at: buildevents
-      - run: buildevents watch $CIRCLE_WORKFLOW_ID
+      - run: buildevents/bin/buildevents watch $CIRCLE_WORKFLOW_ID
 
   lint_and_test_code:
     docker:
@@ -56,29 +56,29 @@ jobs:
       - run:
           name: Install build & test dependencies
           command: |
-            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID pip_install -- pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
-            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID poetry_config -- poetry config --no-interaction virtualenvs.create false
-            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID apt_shellcheck_direnv -- apt-get update && apt-get install shellcheck && apt-get install direnv
+            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID pip_install -- pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
+            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID poetry_config -- poetry config --no-interaction virtualenvs.create false
+            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID apt_shellcheck_direnv -- apt-get update && apt-get install shellcheck && apt-get install direnv
       - run:
           name: Build & install
           command: |
-            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID build -- poetry build && poetry install
+            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID build -- poetry build && poetry install
       - run:
           name: Run pre-commit hooks on all files
           command: |
-            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID pre_commit_check -- pre-commit run --all-files --show-diff-on-failure
+            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID pre_commit_check -- pre-commit run --all-files --show-diff-on-failure
       - run:
           name: Set up test reporting
           command: |
             curl -L https://s3.amazonaws.com/codeclimate/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             sha256sum --check ./.circleci/cc-test-reporter.sha256sum
             chmod +x ./cc-test-reporter
-            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID run_cc_test_reporter -- ./cc-test-reporter before-build
+            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID run_cc_test_reporter -- ./cc-test-reporter before-build
       - run:
           name: Run tests
           command: |
             direnv allow
-            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID pytest -- poetry run pytest --full-trace --cov-report=xml:coverage.xml
+            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID pytest -- poetry run pytest --full-trace --cov-report=xml:coverage.xml
       - store_test_results:
           path: coverage.xml
       - store_artifacts:
@@ -86,7 +86,7 @@ jobs:
       - run:
           name: Publish test results
           command: |
-            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID report_cc_tests -- ./cc-test-reporter after-build --coverage-input-type coverage.py
+            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID report_cc_tests -- ./cc-test-reporter after-build --coverage-input-type coverage.py
       - run:
           name: Test basic cli elements
           command: |
