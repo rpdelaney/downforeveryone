@@ -29,7 +29,9 @@ jobs:
       - run: |
           mkdir -p buildevents/bin
           date +%s > buildevents/build_start
-      - run: go get -v github.com/honeycombio/buildevents
+      - run: |
+          go env
+          go get -v github.com/honeycombio/buildevents
       - run: cp $GOPATH/bin/buildevents buildevents/bin/
       - persist_to_workspace:
           root: buildevents
