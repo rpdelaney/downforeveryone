@@ -32,7 +32,7 @@ jobs:
       - run: |
           curl -L -o "$GOPATH/bin/buildevents" https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64
           chmod +x "$GOPATH/bin/buildevents"
-      - run: cp $GOPATH/bin/buildevents buildevents/bin/
+      - run: cp $GOPATH/bin/buildevents .
       - persist_to_workspace:
           root: buildevents
           paths:
@@ -56,9 +56,9 @@ jobs:
       - run:
           name: Install build & test dependencies
           command: |
-            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID pip_install -- pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
-            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID poetry_config -- poetry config --no-interaction virtualenvs.create false
-            buildevents/bin/buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID apt_shellcheck_direnv -- apt-get update && apt-get install shellcheck && apt-get install direnv
+            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID pip_install -- pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
+            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID poetry_config -- poetry config --no-interaction virtualenvs.create false
+            buildevents cmd $CIRCLE_WORKFLOW_ID $STEP_SPAN_ID apt_shellcheck_direnv -- apt-get update && apt-get install shellcheck && apt-get install direnv
       - run:
           name: Build & install
           command: |
