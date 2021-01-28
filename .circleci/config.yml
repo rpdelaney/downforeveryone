@@ -30,15 +30,14 @@ jobs:
           mkdir -p buildevents/bin
           date +%s > buildevents/build_start
       - run: |
-          go version
-          go env
-          go get -v github.com/honeycombio/buildevents
+          curl -L -o buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64
       - run: cp $GOPATH/bin/buildevents buildevents/bin/
       - persist_to_workspace:
           root: buildevents
           paths:
             - build_start
             - bin/buildevents
+            - buildevents
 
   send_honeycomb_trace:
     docker:
