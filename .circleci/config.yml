@@ -93,4 +93,10 @@ jobs:
 workflows:
   pipeline:
     jobs:
-      - lint_and_test_code
+      - setup_honeycomb
+      - send_honeycomb_trace:
+          requires:
+            - setup_honeycomb
+      - lint_and_test_code:
+          requires:
+            - setup_honeycomb
