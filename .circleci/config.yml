@@ -24,7 +24,7 @@ commands:
 jobs:
   setup_honeycomb:
     docker:
-      - image: python:3.7.6-buster
+      - image: golang:buster
     steps:
       - run: |
           mkdir -p buildevents/bin
@@ -39,7 +39,7 @@ jobs:
 
   send_honeycomb_trace:
     docker:
-      - image: python:3.7.6-buster
+      - image: golang:buster
     steps:
       - attach_workspace:
           at: buildevents
