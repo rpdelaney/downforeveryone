@@ -52,9 +52,9 @@ jobs:
     docker:
       - image: python:3.7.6-buster
     steps:
+      - checkout
       - with_job_span:
           steps:
-            - checkout
             - attach_workspace:
                 at: buildevents
             - run:
