@@ -53,13 +53,6 @@ repos:
         files: 'pyproject\.toml|downforeveryone/__init__.py'
         pass_filenames: false
 
-      - id: circleci
-        name: validate circleci config
-        language: system
-        entry: circelci config validate
-        files: '.circleci/config.yml'
-        pass_filenames: false
-
       - id: isort
         name: isort
         language: system
