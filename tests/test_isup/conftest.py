@@ -16,7 +16,7 @@ def fake_response_args(url="https://foo.bar", status=200):
 
 
 @_pytest.fixture
-def fake_cli_args(mocker):
+def fake_cli_args():
     return cli.parse_args("http://foo.bar")
 
 
