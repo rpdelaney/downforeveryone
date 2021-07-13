@@ -1,0 +1,43 @@
+{
+    "extends": [
+        "config:base"
+    ],
+    "labels": [
+        "dependencies"
+    ],
+    "packageRules": [
+        {
+            "matchUpdateTypes": [
+                "major"
+            ],
+            "groupName": "dependencies",
+            "managers": [
+                "pre-commit",
+                "poetry"
+            ],
+            "reviewers": [
+                "rpdelaney"
+            ]
+        },
+        {
+            "automerge": true,
+            "groupName": "dependencies",
+            "managers": [
+                "pre-commit",
+                "poetry"
+            ],
+            "matchUpdateTypes": [
+                "patch",
+                "pin",
+                "digest",
+                "minor"
+            ]
+        }
+    ],
+    "schedule": [
+        "every weekday",
+        "after 9am and before 5pm"
+    ],
+    "separateMinorPatch": true,
+    "timezone": "America/Los_Angeles"
+}
