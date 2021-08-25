@@ -15,10 +15,6 @@
                 "major"
             ],
             "groupName": "dependencies",
-            "managers": [
-                "pre-commit",
-                "poetry"
-            ],
             "reviewers": [
                 "rpdelaney"
             ]
@@ -26,10 +22,6 @@
         {
             "automerge": true,
             "groupName": "dependencies",
-            "managers": [
-                "pre-commit",
-                "poetry"
-            ],
             "matchUpdateTypes": [
                 "patch",
                 "pin",
