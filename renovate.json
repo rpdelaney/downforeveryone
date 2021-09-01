@@ -34,6 +34,6 @@
         "every weekday",
         "after 9am and before 5pm"
     ],
-    "separateMinorPatch": true,
+    "separateMinorPatch": false,
     "timezone": "America/Los_Angeles"
 }
