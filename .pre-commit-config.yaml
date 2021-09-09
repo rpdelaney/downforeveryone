@@ -42,6 +42,11 @@ repos:
       - id: rst-directive-colons
       - id: rst-inline-touching-normal
 
+  - repo: https://github.com/PyCQA/doc8
+    rev: 0.9.0a1
+    hooks:
+      - id: doc8
+
   - repo: local
     hooks:
       - id: pytest
@@ -94,8 +99,3 @@ repos:
         language: system
         entry: poetry run mypy
         types: [python]
-
-  - repo: https://github.com/PyCQA/doc8
-    rev: 0.9.0a1
-    hooks:
-      - id: doc8
