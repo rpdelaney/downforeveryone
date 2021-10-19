@@ -18,26 +18,31 @@ import traceback
 import urllib.parse
 from http import HTTPStatus
 from json.decoder import JSONDecodeError
+from types import MappingProxyType
 from typing import Any, Dict, Tuple
 
 import requests
 from requests.exceptions import RequestException
 
-from . import cli, useragents
+from downforeveryone import cli, useragents
 
-__API_URL__ = {
-    "netloc": "https://api-prod.downfor.cloud",
-    "path": "httpcheck/",
-}
-__QUERY_HEADERS__ = {
-    "User-Agent": useragents.random_agent(),
-    "Referer": "https://api.downfor.cloud/",
-    "Origin": "https://downforeveryoneorjustme.com",
-    "Accept": "*/*",
-    "Accept-Language": "en-US,en;q=0.5",
-    "DNT": "1",
-    "Connection": "keep-alive",
-}
+__API_URL__ = MappingProxyType(
+    {
+        "netloc": "https://api-prod.downfor.cloud",
+        "path": "httpcheck/",
+    }
+)
+__QUERY_HEADERS__ = MappingProxyType(
+    {
+        "User-Agent": useragents.random_agent(),
+        "Referer": "https://api.downfor.cloud/",
+        "Origin": "https://downforeveryoneorjustme.com",
+        "Accept": "*/*",
+        "Accept-Language": "en-US,en;q=0.5",
+        "DNT": "1",
+        "Connection": "keep-alive",
+    }
+)
 
 
 def _query_url(url: str) -> str:
@@ -48,13 +53,9 @@ def _query_url(url: str) -> str:
 
     Returns:
         The composed API endpoint URL.
-
-    Raises:
-        TypeError: If the url argument cannot be concatenated with a string.
-
     """
     return urllib.parse.urljoin(
-        __API_URL__["netloc"], f"{__API_URL__['path']}" + url
+        __API_URL__["netloc"], "{}{}".format(__API_URL__["path"], url)
     )
 
 
@@ -76,11 +77,10 @@ def _handle_response(response: Dict[str, Any]) -> Tuple[str, int]:
         return "down for everyone.", 0
     elif isdown is False:
         return "just you.", 1
-    else:
-        return (
-            "There was a problem with the request. response was:\n"
-            f"{response}"
-        ), 3
+
+    return (
+        f"There was a problem with the request. response was:\n{response}"
+    ), 3
 
 
 def isitup(url: str) -> Tuple[str, int]:
@@ -96,7 +96,7 @@ def isitup(url: str) -> Tuple[str, int]:
 
     """
     try:
-        r = requests.get(
+        response = requests.get(
             _query_url(url),
             headers=__QUERY_HEADERS__,
         )
@@ -105,25 +105,25 @@ def isitup(url: str) -> Tuple[str, int]:
         message = str(rexc)
         return (f"{title}: {message}"), 3
 
-    if r.status_code != HTTPStatus.OK.value:
+    if response.status_code != HTTPStatus.OK.value:
         status_name = [
             status.description
             for status in list(HTTPStatus)
-            if status.value == r.status_code
+            if status.value == response.status_code
         ]
         return (
-            f"HTTP request failure. Status: {r.status_code} "
+            f"HTTP request failure. Status: {response.status_code} "
             f"Description: {status_name}"
         ), 3
 
     try:
-        jsondata = r.json()
+        jsondata = response.json()
     except JSONDecodeError as jde:
         title = type(jde).__name__
         message = str(jde)
         return (f"{title}: {message}"), 3
-    else:
-        return _handle_response(jsondata)
+
+    return _handle_response(jsondata)
 
 
 def main() -> None:

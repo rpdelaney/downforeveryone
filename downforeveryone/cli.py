@@ -4,7 +4,7 @@ Call parse_args() to return an argument parser namespace
 """
 import argparse
 
-from . import __version__
+from downforeveryone import __version__
 
 
 def parse_args() -> argparse.Namespace:
