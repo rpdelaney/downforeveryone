@@ -66,7 +66,7 @@ repos:
       - id: version
         name: verify version is set correctly
         language: system
-        entry: pytest --quiet --no-header --no-summary --no-cov -k version
+        entry: poetry run pytest --quiet --no-header --no-summary --no-cov -k version
         files: 'pyproject\.toml|downforeveryone/__init__.py'
         pass_filenames: false
 
