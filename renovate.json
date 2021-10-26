@@ -2,19 +2,19 @@
     "extends": [
         "config:base"
     ],
-    "lockFileMaintenance": {
-        "enabled": true,
-        "automerge": true
-    },
     "labels": [
         "dependencies"
     ],
+    "lockFileMaintenance": {
+        "automerge": true,
+        "enabled": true
+    },
     "packageRules": [
         {
+            "groupName": "dependencies",
             "matchUpdateTypes": [
                 "major"
             ],
-            "groupName": "dependencies",
             "reviewers": [
                 "rpdelaney"
             ]
@@ -27,6 +27,19 @@
                 "pin",
                 "digest",
                 "minor"
+            ]
+        },
+        {
+            "automerge": false,
+            "description": "Don't auto-update python minor version in CI",
+            "groupName": "dependencies",
+            "managers": [
+                "circleci",
+                "dockerfile"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "major"
             ]
         }
     ],
