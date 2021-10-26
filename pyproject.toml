@@ -42,6 +42,8 @@ pytest-icdiff = "^0.5"
 toml = "^0.10.2"
 responses = "^0.14.0"
 semver = "^2.13.0"
+types-toml = "^0.10.1"
+types-requests = "^2.25.11"
 
 [tool.poetry.scripts]
 isup = "downforeveryone.isup:main"
