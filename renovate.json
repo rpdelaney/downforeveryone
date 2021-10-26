@@ -9,6 +9,7 @@
         "automerge": true,
         "enabled": true
     },
+    "ignorePaths": [".circleci/**"],
     "packageRules": [
         {
             "groupName": "dependencies",
@@ -27,19 +28,6 @@
                 "pin",
                 "digest",
                 "minor"
-            ]
-        },
-        {
-            "automerge": false,
-            "description": "Don't auto-update python minor version in CI",
-            "groupName": "dependencies",
-            "managers": [
-                "circleci",
-                "dockerfile"
-            ],
-            "matchUpdateTypes": [
-                "minor",
-                "major"
             ]
         }
     ],
