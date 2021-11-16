@@ -50,7 +50,9 @@ isup = "downforeveryone.isup:main"
 
 [tool.pytest.ini_options]
 console_output_style = "progress"
-addopts = "--cov=downforeveryone"
+addopts = "--cov=downforeveryone --strict-markers --strict-config"
+filterwarnings = ["error"]
+xfail_strict = true
 mock_use_standalone_module = true
 
 [tool.poetry.dev-dependencies.isort]
