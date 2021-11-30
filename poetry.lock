@@ -184,6 +184,14 @@ flake8 = ">=3"
 pydocstyle = ">=2.1"
 
 [[package]]
+name = "flake8-fixme"
+version = "1.1.1"
+description = "Check for FIXME, TODO and other temporary developer notes. Plugin for flake8."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "flake8-plugin-utils"
 version = "1.3.2"
 description = "The package provides base classes and utils for flake8 plugin writing"
@@ -589,7 +597,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7, <3.10"
-content-hash = "9a04613fdc67ca1f9b4dde80ecb4d744fd5beb107da4e1d09482dee03b827a5a"
+content-hash = "3233a1056bb9bc4be973e3e719e835f5ed393e282f518c3768436c7a46ce83a4"
 
 [metadata.files]
 appdirs = [
@@ -696,6 +704,10 @@ flake8-comprehensions = [
 flake8-docstrings = [
     {file = "flake8-docstrings-1.6.0.tar.gz", hash = "sha256:9fe7c6a306064af8e62a055c2f61e9eb1da55f84bb39caef2b84ce53708ac34b"},
     {file = "flake8_docstrings-1.6.0-py2.py3-none-any.whl", hash = "sha256:99cac583d6c7e32dd28bbfbef120a7c0d1b6dde4adb5a9fd441c4227a6534bde"},
+]
+flake8-fixme = [
+    {file = "flake8-fixme-1.1.1.tar.gz", hash = "sha256:50cade07d27a4c30d4f12351478df87339e67640c83041b664724bda6d16f33a"},
+    {file = "flake8_fixme-1.1.1-py2.py3-none-any.whl", hash = "sha256:226a6f2ef916730899f29ac140bed5d4a17e5aba79f00a0e3ae1eff1997cb1ac"},
 ]
 flake8-plugin-utils = [
     {file = "flake8-plugin-utils-1.3.2.tar.gz", hash = "sha256:20fa2a8ca2decac50116edb42e6af0a1253ef639ad79941249b840531889c65a"},
