@@ -45,6 +45,7 @@ semver = "^2.13.0"
 types-toml = "^0.10.1"
 types-requests = "^2.25.11"
 flake8-builtins = "^1.5.3"
+flake8-comprehensions = "^3.7.0"
 
 [tool.poetry.scripts]
 isup = "downforeveryone.isup:main"
