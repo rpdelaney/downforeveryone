@@ -49,6 +49,7 @@ flake8-builtins = "^1.5.3"
 flake8-comprehensions = "^3.7.0"
 flake8-fixme = "^1.1.1"
 cohesion = "^1.0.0"
+flake8-eradicate = "^1.2.0"
 
 [tool.poetry.scripts]
 isup = "downforeveryone.isup:main"
