@@ -84,6 +84,14 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 importlib-metadata = {version = "*", markers = "python_version < \"3.8\""}
 
 [[package]]
+name = "cohesion"
+version = "1.0.0"
+description = "A tool for measuring Python class cohesion."
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
@@ -104,6 +112,14 @@ tomli = {version = "*", optional = true, markers = "extra == \"toml\""}
 
 [package.extras]
 toml = ["tomli"]
+
+[[package]]
+name = "eradicate"
+version = "2.0.0"
+description = "Removes commented-out code."
+category = "dev"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "flake8"
@@ -184,6 +200,19 @@ flake8 = ">=3"
 pydocstyle = ">=2.1"
 
 [[package]]
+name = "flake8-eradicate"
+version = "1.2.0"
+description = "Flake8 plugin to find commented out code"
+category = "dev"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+attrs = "*"
+eradicate = ">=2.0,<3.0"
+flake8 = ">=3.5,<5"
+
+[[package]]
 name = "flake8-fixme"
 version = "1.1.1"
 description = "Check for FIXME, TODO and other temporary developer notes. Plugin for flake8."
@@ -195,9 +224,20 @@ python-versions = "*"
 name = "flake8-plugin-utils"
 version = "1.3.2"
 description = "The package provides base classes and utils for flake8 plugin writing"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6,<4.0"
+
+[[package]]
+name = "flake8-pytest-style"
+version = "1.5.1"
+description = "A flake8 plugin checking common style issues or inconsistencies with pytest-based tests."
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+flake8-plugin-utils = ">=1.3.2,<2.0.0"
 
 [[package]]
 name = "icdiff"
@@ -597,7 +637,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytes
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.7, <3.10"
-content-hash = "3233a1056bb9bc4be973e3e719e835f5ed393e282f518c3768436c7a46ce83a4"
+content-hash = "09c05e4c77cb98179e3661da776f77bd3f101e15c44e3b422361be5aa78cac33"
 
 [metadata.files]
 appdirs = [
@@ -627,6 +667,9 @@ charset-normalizer = [
 click = [
     {file = "click-8.0.3-py3-none-any.whl", hash = "sha256:353f466495adaeb40b6b5f592f9f91cb22372351c84caeb068132442a4518ef3"},
     {file = "click-8.0.3.tar.gz", hash = "sha256:410e932b050f5eed773c4cda94de75971c89cdb3155a72a0831139a79e5ecb5b"},
+]
+cohesion = [
+    {file = "cohesion-1.0.0-py2.py3-none-any.whl", hash = "sha256:a33a526eb8922c7dbfef19257b3532d16e6246c4ece3ab3b492b290d9d3f2d4b"},
 ]
 colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
@@ -681,6 +724,9 @@ coverage = [
     {file = "coverage-6.2-pp36.pp37.pp38-none-any.whl", hash = "sha256:5829192582c0ec8ca4a2532407bc14c2f338d9878a10442f5d03804a95fac9de"},
     {file = "coverage-6.2.tar.gz", hash = "sha256:e2cad8093172b7d1595b4ad66f24270808658e11acf43a8f95b41276162eb5b8"},
 ]
+eradicate = [
+    {file = "eradicate-2.0.0.tar.gz", hash = "sha256:27434596f2c5314cc9b31410c93d8f7e8885747399773cd088d3adea647a60c8"},
+]
 flake8 = [
     {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
     {file = "flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"},
@@ -705,6 +751,10 @@ flake8-docstrings = [
     {file = "flake8-docstrings-1.6.0.tar.gz", hash = "sha256:9fe7c6a306064af8e62a055c2f61e9eb1da55f84bb39caef2b84ce53708ac34b"},
     {file = "flake8_docstrings-1.6.0-py2.py3-none-any.whl", hash = "sha256:99cac583d6c7e32dd28bbfbef120a7c0d1b6dde4adb5a9fd441c4227a6534bde"},
 ]
+flake8-eradicate = [
+    {file = "flake8-eradicate-1.2.0.tar.gz", hash = "sha256:acaa1b6839ff00d284b805c432fdfa6047262bd15a5504ec945797e87b4de1fa"},
+    {file = "flake8_eradicate-1.2.0-py3-none-any.whl", hash = "sha256:51dc660d0c1c1ed93af0f813540bbbf72ab2d3466c14e3f3bac371c618b6042f"},
+]
 flake8-fixme = [
     {file = "flake8-fixme-1.1.1.tar.gz", hash = "sha256:50cade07d27a4c30d4f12351478df87339e67640c83041b664724bda6d16f33a"},
     {file = "flake8_fixme-1.1.1-py2.py3-none-any.whl", hash = "sha256:226a6f2ef916730899f29ac140bed5d4a17e5aba79f00a0e3ae1eff1997cb1ac"},
@@ -712,6 +762,10 @@ flake8-fixme = [
 flake8-plugin-utils = [
     {file = "flake8-plugin-utils-1.3.2.tar.gz", hash = "sha256:20fa2a8ca2decac50116edb42e6af0a1253ef639ad79941249b840531889c65a"},
     {file = "flake8_plugin_utils-1.3.2-py3-none-any.whl", hash = "sha256:1fe43e3e9acf3a7c0f6b88f5338cad37044d2f156c43cb6b080b5f9da8a76f06"},
+]
+flake8-pytest-style = [
+    {file = "flake8-pytest-style-1.5.1.tar.gz", hash = "sha256:56af62da468a547560a9f455c7f205449ed03e8f8a42f85373180e91c1031c40"},
+    {file = "flake8_pytest_style-1.5.1-py3-none-any.whl", hash = "sha256:ae62f8db8ad0ea7d90695deb6dbbacfc67d45cb83a7c360388b34a9705786114"},
 ]
 icdiff = [
     {file = "icdiff-2.0.4.tar.gz", hash = "sha256:c72572e5ce087bc7a7748af2664764d4a805897caeefb665bdc12677fefb2212"},
