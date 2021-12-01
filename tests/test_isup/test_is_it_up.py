@@ -48,7 +48,7 @@ def test_isup_error_with_description(fake_response_args, mock_handle_response):
 
     assert result_message == (
         "HTTP request failure. Status: 404 "
-        "Description: ['Nothing matches the given URI']"
+        "Description: Nothing matches the given URI"
     )
     assert result_status == 3
 

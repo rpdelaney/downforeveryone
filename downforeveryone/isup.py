@@ -106,11 +106,7 @@ def isitup(url: str) -> Tuple[str, int]:
         return (f"{title}: {message}"), 3
 
     if response.status_code != HTTPStatus.OK.value:
-        status_name = [
-            status.description
-            for status in list(HTTPStatus)
-            if status.value == response.status_code
-        ]
+        status_name = HTTPStatus(response.status_code).description
         return (
             f"HTTP request failure. Status: {response.status_code} "
             f"Description: {status_name}"
