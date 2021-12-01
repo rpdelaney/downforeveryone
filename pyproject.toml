@@ -17,11 +17,14 @@ line-length = 79
 target_version = [ "py38",]
 
 [tool.isort]
+color_output = true
 combine_star = true
 indent = "    "
-length_sort = false
-line_length = 79
 multi_line_output = 3
+use_parentheses = true
+skip_gitignore = true
+group_by_package = true
+remove_redundant_aliases = true
 
 [tool.poetry.dependencies]
 python = ">=3.7, <3.10"
