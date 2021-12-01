@@ -26,7 +26,6 @@ multi_line_output = 3
 [tool.poetry.dependencies]
 python = ">=3.7, <3.10"
 requests = "^2.22"
-flake8-pytest-style = "^1.5.1"
 
 [tool.poetry.dev-dependencies]
 mock = "^4.0"
@@ -51,6 +50,7 @@ flake8-fixme = "^1.1.1"
 cohesion = "^1.0.0"
 flake8-eradicate = "^1.2.0"
 flake8-simplify = "^0.14.2"
+flake8-pytest-style = "^1.5.1"
 
 [tool.poetry.scripts]
 isup = "downforeveryone.isup:main"
