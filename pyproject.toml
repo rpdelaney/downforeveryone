@@ -19,42 +19,42 @@ target_version = [ "py38",]
 [tool.isort]
 color_output = true
 combine_star = true
+group_by_package = true
 indent = "    "
 multi_line_output = 3
-use_parentheses = true
-skip_gitignore = true
-group_by_package = true
 remove_redundant_aliases = true
+skip_gitignore = true
+use_parentheses = true
 
 [tool.poetry.dependencies]
 python = ">=3.7, <3.10"
 requests = "^2.22"
 
 [tool.poetry.dev-dependencies]
-mock = "^4.0"
-pytest = "^6.2"
-pytest-cov = "^3.0"
-pytest-mock = "^3.6"
-flake8 = "^4.0"
 black = "21.6b0"
-mypy = "^0.910"
-flake8-bugbear = "^21.4"
-flake8-docstrings = "^1.6"
+cohesion = "^1.0.0"
+flake8 = "^4.0"
+flake8-annotations-complexity = "^0.0.6"
 flake8-breakpoint = "^1.1"
-pytest-icdiff = "^0.5"
-toml = "^0.10.2"
-responses = "^0.16.0"
-semver = "^2.13.0"
-types-toml = "^0.10.1"
-types-requests = "^2.25.11"
+flake8-bugbear = "^21.4"
 flake8-builtins = "^1.5.3"
 flake8-comprehensions = "^3.7.0"
-flake8-fixme = "^1.1.1"
-cohesion = "^1.0.0"
+flake8-docstrings = "^1.6"
 flake8-eradicate = "^1.2.0"
-flake8-simplify = "^0.14.2"
+flake8-fixme = "^1.1.1"
 flake8-pytest-style = "^1.5.1"
-flake8-annotations-complexity = "^0.0.6"
+flake8-simplify = "^0.14.2"
+mock = "^4.0"
+mypy = "^0.910"
+pytest = "^6.2"
+pytest-cov = "^3.0"
+pytest-icdiff = "^0.5"
+pytest-mock = "^3.6"
+responses = "^0.16.0"
+semver = "^2.13.0"
+toml = "^0.10.2"
+types-requests = "^2.25.11"
+types-toml = "^0.10.1"
 
 [tool.poetry.scripts]
 isup = "downforeveryone.isup:main"
