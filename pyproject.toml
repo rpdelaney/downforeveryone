@@ -25,6 +25,7 @@ multi_line_output = 3
 remove_redundant_aliases = true
 skip_gitignore = true
 use_parentheses = true
+include_trailing_comma = true  # this prevents isort from fighting with black
 
 [tool.poetry.dependencies]
 python = ">=3.7, <3.10"
