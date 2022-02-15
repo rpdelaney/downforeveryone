@@ -70,3 +70,41 @@ mock_use_standalone_module = true
 [tool.poetry.dev-dependencies.isort]
 version = "^5.4"
 extras = [ "pyproject",]
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+
+# definitions
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+disallow_untyped_decorators = true
+
+# optionals
+no_implicit_optional = true
+strict_optional = true
+
+# imports
+ignore_missing_imports = true
+
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_return_any = true
+warn_unreachable = true
+
+strict_equality = true
+
+# error formating
+show_column_numbers = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = ".venv.*"
+ignore_errors = true
