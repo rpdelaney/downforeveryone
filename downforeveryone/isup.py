@@ -18,31 +18,13 @@ import traceback
 import urllib.parse
 from http import HTTPStatus
 from json.decoder import JSONDecodeError
-from types import MappingProxyType
 from typing import Any, Dict, Tuple
 
 import requests
 from requests.exceptions import RequestException
 
-from downforeveryone import cli, useragents
-
-__API_URL__ = MappingProxyType(
-    {
-        "netloc": "https://api-prod.downfor.cloud",
-        "path": "httpcheck/",
-    }
-)
-__QUERY_HEADERS__ = MappingProxyType(
-    {
-        "User-Agent": useragents.random_agent(),
-        "Referer": "https://api.downfor.cloud/",
-        "Origin": "https://downforeveryoneorjustme.com",
-        "Accept": "*/*",
-        "Accept-Language": "en-US,en;q=0.5",
-        "DNT": "1",
-        "Connection": "keep-alive",
-    }
-)
+from downforeveryone import cli
+from downforeveryone.constants import API_URL, QUERY_HEADERS
 
 
 def _query_url(url: str) -> str:
@@ -55,7 +37,7 @@ def _query_url(url: str) -> str:
         The composed API endpoint URL.
     """
     return urllib.parse.urljoin(
-        __API_URL__["netloc"], "{}{}".format(__API_URL__["path"], url)
+        API_URL["netloc"], "{}{}".format(API_URL["path"], url)
     )
 
 
@@ -98,7 +80,7 @@ def isitup(url: str) -> Tuple[str, int]:
     try:
         response = requests.get(
             _query_url(url),
-            headers=__QUERY_HEADERS__,
+            headers=QUERY_HEADERS,
         )
     except RequestException as rexc:
         title = type(rexc).__name__
