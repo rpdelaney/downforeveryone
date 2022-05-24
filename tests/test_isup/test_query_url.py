@@ -9,5 +9,5 @@ def test_urljoin_called_once(mocker):
     )
     isup._query_url("foo")
     mock_urllib_parse.assert_called_once_with(
-        isup.__API_URL__["netloc"], isup.__API_URL__["path"] + "foo"
+        isup.API_URL["netloc"], isup.API_URL["path"] + "foo"
     )
