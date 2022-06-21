@@ -58,9 +58,8 @@ def test_isup_handles_broken_json(fake_response_args):
 
     result_message, result_status = isup.isitup(__TEST_URL__)
 
-    assert (
-        result_message == "JSONDecodeError: [Errno Expecting value] "
-        "This isn't valid json.: 0"
+    assert result_message == (
+        "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
     )
     assert result_status == 3
 
