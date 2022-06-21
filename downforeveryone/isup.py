@@ -80,8 +80,8 @@ def isitup(url: str) -> Tuple[str, int]:
     try:
         response = requests.get(
             _query_url(url),
-            headers=QUERY_HEADERS,  # type: ignore[arg-type]
-        )  # https://github.com/python/typeshed/pull/7773
+            headers=QUERY_HEADERS,
+        )
     except RequestException as rexc:
         title = type(rexc).__name__
         message = str(rexc)
