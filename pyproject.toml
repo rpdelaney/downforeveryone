@@ -32,7 +32,7 @@ python = ">=3.7, <4.0"
 requests = "^2.22"
 
 [tool.poetry.dev-dependencies]
-black = "22.3.0"
+black = "22.6.0"
 cohesion = "^1.0.0"
 flake8 = "^4.0"
 flake8-annotations-complexity = "^0.0.7"
