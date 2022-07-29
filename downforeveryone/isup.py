@@ -15,7 +15,6 @@ Usage example when importing this module:
 """
 import sys
 import traceback
-import urllib.parse
 from http import HTTPStatus
 from json.decoder import JSONDecodeError
 from typing import Any, Dict, Tuple
@@ -25,20 +24,6 @@ from requests.exceptions import RequestException
 
 from downforeveryone import cli
 from downforeveryone.constants import API_URL, QUERY_HEADERS
-
-
-def _query_url(url: str) -> str:
-    """Return a URL with isup.me API endpoint and our target.
-
-    Args:
-        url: URL to the site to be checked
-
-    Returns:
-        The composed API endpoint URL.
-    """
-    return urllib.parse.urljoin(
-        API_URL["netloc"], "{}{}".format(API_URL["path"], url)
-    )
 
 
 def _handle_response(response: Dict[str, Any]) -> Tuple[str, int]:
@@ -79,7 +64,7 @@ def isitup(url: str) -> Tuple[str, int]:
     """
     try:
         response = requests.get(
-            _query_url(url),
+            API_URL.format(domain=url),
             headers=QUERY_HEADERS,
         )
     except RequestException as rexc:

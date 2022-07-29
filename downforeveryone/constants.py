@@ -2,12 +2,7 @@ from types import MappingProxyType
 
 from downforeveryone import useragents
 
-API_URL = MappingProxyType(
-    {
-        "netloc": "https://api-prod.downfor.cloud",
-        "path": "httpcheck/",
-    }
-)
+API_URL = "https://api-prod.downfor.cloud/httpcheck/{domain}"
 
 QUERY_HEADERS = MappingProxyType(
     {

@@ -1,14 +1,14 @@
 import pytest as _pytest
 import responses
 
-from downforeveryone import cli, isup
+from downforeveryone import cli, constants
 
 
 @_pytest.fixture
 def fake_response_args(url="https://foo.bar", status=200):
     return {
         "method": responses.GET,
-        "url": isup._query_url(url),
+        "url": constants.API_URL.format(domain=url),
         "body": "{}",
         "status": status,
         "content_type": "application/json",
