@@ -34,7 +34,7 @@ requests = "^2.22"
 [tool.poetry.dev-dependencies]
 black = "22.10.0"
 cohesion = "^1.0.0"
-flake8 = "^5.0"
+flake8 = ">=5.0"
 flake8-annotations-complexity = "^0.0.7"
 flake8-breakpoint = "^1.1"
 flake8-bugbear = "^22.1"
