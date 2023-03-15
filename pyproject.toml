@@ -31,7 +31,7 @@ include_trailing_comma = true  # this prevents isort from fighting with black
 python = ">=3.7, <4.0"
 requests = "^2.22"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black = "23.1.0"
 cohesion = "^1.0.0"
 flake8 = ">=5.0"
