@@ -1,0 +1,50 @@
+---
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  lint_and_test_code:
+    runs-on: ubuntu-latest
+    container:
+      image: python:3.9.7-buster
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install build & test dependencies
+        run: |
+          pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
+          poetry config --no-interaction virtualenvs.create false
+          apt-get update && apt-get install shellcheck && apt-get install direnv
+
+      - name: Build & install
+        run: poetry build --no-ansi --no-interaction && poetry install --no-ansi --no-interaction
+
+      - name: Run pre-commit hooks on all files
+        run: pre-commit run --all-files --show-diff-on-failure
+
+      - name: Set up test reporting
+        run: |
+          curl -L https://s3.amazonaws.com/codeclimate/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          ./cc-test-reporter before-build
+
+      - name: Run tests
+        run: |
+          direnv allow
+          poetry run pytest --full-trace --cov-report=xml:coverage.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverage.xml
+
+      - name: Publish test results
+        run: ./cc-test-reporter after-build --coverage-input-type coverage.py
+
+      - name: Test basic cli elements
+        run: |
+          ( set -x ; isup --version ) 1>/dev/null
+          ( set -x ; isup --help ) 1>/dev/null
