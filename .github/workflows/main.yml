@@ -18,6 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.7
+
       - name: Install build & test dependencies
         run: |
           pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
