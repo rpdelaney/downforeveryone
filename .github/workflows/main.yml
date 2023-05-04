@@ -29,6 +29,14 @@ jobs:
           poetry config --no-interaction virtualenvs.create false
           apt-get update && apt-get install shellcheck && apt-get install direnv
 
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/pyproject.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Build & install
         run: poetry build --no-ansi --no-interaction && poetry install --no-ansi --no-interaction
 
