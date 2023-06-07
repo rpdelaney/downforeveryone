@@ -9,7 +9,6 @@
         "automerge": true,
         "enabled": true
     },
-    "ignorePaths": [".circleci/**"],
     "packageRules": [
         {
             "groupName": "dependencies",
@@ -31,10 +30,5 @@
             ]
         }
     ],
-    "schedule": [
-        "every weekday",
-        "after 9am and before 5pm"
-    ],
-    "separateMinorPatch": false,
-    "timezone": "America/Los_Angeles"
+    "separateMinorPatch": false
 }
