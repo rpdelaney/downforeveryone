@@ -13,7 +13,7 @@ jobs:
   lint_and_test_code:
     runs-on: ubuntu-latest
     container:
-      image: python:3.10.11-buster
+      image: python:3.10.11-slim-bullseye
     steps:
       - name: Checkout
         uses: actions/checkout@v2
