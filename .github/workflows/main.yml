@@ -13,7 +13,7 @@ jobs:
   lint_and_test_code:
     runs-on: ubuntu-latest
     container:
-      image: python:3.9.7-buster
+      image: python:3.11.3-buster
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9.7
+          python-version: 3.11.3
 
       - name: Install build & test dependencies
         run: |
