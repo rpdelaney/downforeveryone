@@ -24,9 +24,12 @@ jobs:
         with:
           python-version: 3.11.4
 
+      - name: Run linters
+        uses: pre-commit/action@v3.0.0
+
       - name: Install build & test dependencies
         run: |
-          pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
+          pip3 install --disable-pip-version-check --progress-bar off 'poetry'
           poetry config --no-interaction virtualenvs.create false
           apt-get update && apt-get install shellcheck && apt-get install direnv
 
@@ -40,9 +43,6 @@ jobs:
 
       - name: Build & install
         run: poetry build --no-ansi --no-interaction && poetry install --no-ansi --no-interaction
-
-      - name: Run pre-commit hooks on all files
-        run: pre-commit run --all-files --show-diff-on-failure
 
       - name: Set up test reporting
         run: |
