@@ -50,6 +50,7 @@ jobs:
           apt-get install --assume-yes shellcheck
           apt-get install --assume-yes direnv
           apt-get install --assume-yes curl
+          apt-get install --assume-yes git
 
       - name: Cache dependencies
         uses: actions/cache@v3
