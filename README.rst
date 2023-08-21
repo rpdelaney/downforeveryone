@@ -1,6 +1,6 @@
 downforeveryone
 ======================
-|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI| |COVERAGE|
+|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI|
 |MAINTAINABILITY| |STYLE|
 
 .. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/downforeveryone
@@ -13,8 +13,6 @@ downforeveryone
 .. |STYLE| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
 .. |LANGUAGE| image:: https://img.shields.io/pypi/pyversions/downforeveryone
-.. |COVERAGE| image:: https://img.shields.io/codeclimate/coverage/rpdelaney/downforeveryone
-   :target: https://codeclimate.com/github/rpdelaney/downforeveryone
 .. |MAINTAINABILITY| image:: https://img.shields.io/codeclimate/maintainability-percentage/rpdelaney/downforeveryone
    :target: https://codeclimate.com/github/rpdelaney/downforeveryone
 
