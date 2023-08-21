@@ -26,7 +26,10 @@ jobs:
       - name: Install build & test dependencies
         run: |
           pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
-          apt-get update && apt-get install shellcheck && apt-get install direnv && apt-get install git
+          apt-get update
+          apt-get install shellcheck
+          apt-get install direnv
+          apt-get install git
 
       - name: Cache dependencies
         uses: actions/cache@v3
