@@ -41,7 +41,7 @@ jobs:
         run: poetry build --no-ansi --no-interaction && poetry install --no-ansi --no-interaction
 
       - name: Run pre-commit hooks on all files
-        run: pre-commit run --all-files --show-diff-on-failure
+        run: poetry run pre-commit run --all-files --show-diff-on-failure
 
       - name: Set up test reporting
         run: |
