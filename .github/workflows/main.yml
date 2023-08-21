@@ -27,7 +27,7 @@ jobs:
         run: |
           pip3 install --disable-pip-version-check --progress-bar off 'poetry' 'pre-commit'
           poetry config --no-interaction virtualenvs.create false
-          apt-get update && apt-get install shellcheck && apt-get install direnv
+          apt-get update && apt-get install shellcheck && apt-get install direnv && apt-get install git
 
       - name: Cache dependencies
         uses: actions/cache@v3
