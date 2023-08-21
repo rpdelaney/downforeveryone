@@ -25,6 +25,7 @@ jobs:
       - name: Install build & test dependencies
         run: |
           pip3 install --disable-pip-version-check --progress-bar off 'poetry'
+          poetry install --no-ansi --no-interaction
 
       - name: Run linters
         uses: pre-commit/action@v3.0.0
