@@ -14,7 +14,7 @@ classifiers = [ "Environment :: Console", "License :: OSI Approved :: Apache Sof
 
 [tool.black]
 line-length = 79
-target_version = [ "py38",]
+target_version = [ "py311",]
 
 [tool.isort]
 color_output = true
@@ -28,7 +28,7 @@ use_parentheses = true
 include_trailing_comma = true  # this prevents isort from fighting with black
 
 [tool.poetry.dependencies]
-python = ">=3.7, <4.0"
+python = ">=3.9, <4.0"
 requests = "^2.22"
 
 [tool.poetry.group.dev.dependencies]
