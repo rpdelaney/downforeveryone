@@ -1,7 +1,6 @@
 downforeveryone
 ======================
-|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI|
-|MAINTAINABILITY| |STYLE|
+|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI| |STYLE|
 
 .. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/downforeveryone
    :target: https://circleci.com/gh/rpdelaney/downforeveryone/tree/master
@@ -13,8 +12,6 @@ downforeveryone
 .. |STYLE| image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
 .. |LANGUAGE| image:: https://img.shields.io/pypi/pyversions/downforeveryone
-.. |MAINTAINABILITY| image:: https://img.shields.io/codeclimate/maintainability-percentage/rpdelaney/downforeveryone
-   :target: https://codeclimate.com/github/rpdelaney/downforeveryone
 
 Checks if a website is down for everyone or just you, via isup.me.
 
