@@ -13,7 +13,7 @@ def test_version_set():
 
 
 def test_version_is_semver():
-    assert semver.VersionInfo.isvalid(downforeveryone.__version__)
+    assert semver.VersionInfo.is_valid(downforeveryone.__version__)
 
 
 def test_version_matches_pyproject():
