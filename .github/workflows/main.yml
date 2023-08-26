@@ -32,7 +32,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: python:3.11.4-slim-bookworm
+      image: python:3.11.5-slim-bookworm
     steps:
       - name: Checkout
         uses: actions/checkout@v3
