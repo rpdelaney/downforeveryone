@@ -29,6 +29,11 @@
                 "digest",
                 "minor"
             ]
+        },
+        {
+            "matchManagers": ["github-actions"],
+            "groupName": "github-actions",
+            "automerge": true
         }
     ],
     "separateMinorPatch": false
