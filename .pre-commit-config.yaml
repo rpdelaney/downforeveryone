@@ -30,6 +30,14 @@ repos:
       - id: check-toml
       - id: check-yaml
 
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.26.1
+    hooks:
+      - id: check-github-workflows
+        name: validate github workflows
+      - id: check-renovate
+        name: validate renovate config
+
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.9.0  # Use the ref you want to point at
     hooks:
