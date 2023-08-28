@@ -57,3 +57,8 @@ and `pre-commit <https://pre-commit.com/>`_.
     poetry install
 
 `direnv <https://direnv.net/>`_ is optional, but recommended for convenience.
+
+=================
+Similar projects
+=================
+* `is-up-cli <https://github.com/sindresorhus/is-up-cli>`_: Same idea, but in Javascript.
