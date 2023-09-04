@@ -832,6 +832,7 @@ optional = false
 python-versions = ">=3.6"
 files = [
     {file = "pytest-icdiff-0.6.tar.gz", hash = "sha256:e8f1ef4550a893b4f0a0ea7e7a8299b12ded72c086101d7811ddec0d85fd1bad"},
+    {file = "pytest_icdiff-0.6-py3-none-any.whl", hash = "sha256:93ba20b71e51db7abecf99abee8fd13abd9ba7934f8e6838d1c4f443b4fc56a7"},
 ]
 
 [package.dependencies]
