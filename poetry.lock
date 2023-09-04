@@ -825,13 +825,14 @@ testing = ["fields", "hunter", "process-tests", "pytest-xdist", "six", "virtuale
 
 [[package]]
 name = "pytest-icdiff"
-version = "0.6"
+version = "0.7"
 description = "use icdiff for better error messages in pytest assertions"
 category = "dev"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 files = [
-    {file = "pytest-icdiff-0.6.tar.gz", hash = "sha256:e8f1ef4550a893b4f0a0ea7e7a8299b12ded72c086101d7811ddec0d85fd1bad"},
+    {file = "pytest-icdiff-0.7.tar.gz", hash = "sha256:1cec1d7906ece36403223127e0f4bf8f7594ba86e4ce8a0828cdcf09551b1938"},
+    {file = "pytest_icdiff-0.7-py3-none-any.whl", hash = "sha256:583c50dc781627555e9533504f6620c23d149916a902755d3243a804392c4d96"},
 ]
 
 [package.dependencies]
