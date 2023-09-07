@@ -1,9 +1,9 @@
 downforeveryone
 ======================
-|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |CIRCLECI| |STYLE|
+|LANGUAGE| |VERSION| |LICENSE| |MAINTAINED| |BUILD| |STYLE|
 
-.. |CIRCLECI| image:: https://img.shields.io/circleci/build/gh/rpdelaney/downforeveryone
-   :target: https://circleci.com/gh/rpdelaney/downforeveryone/tree/master
+.. |BUILD| image:: https://github.com/rpdelaney/downforeveryone/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/rpdelaney/downforeveryone/actions/workflows/main.yml
 .. |LICENSE| image:: https://img.shields.io/badge/license-Apache%202.0-informational
    :target: https://www.apache.org/licenses/LICENSE-2.0.txt
 .. |MAINTAINED| image:: https://img.shields.io/maintenance/yes/2023?logoColor=informational
