@@ -60,5 +60,5 @@ jobs:
 
       - name: Test basic cli elements
         run: |
-          ( set -x ; isup --version ) 1>/dev/null
-          ( set -x ; isup --help ) 1>/dev/null
+          ( set -x ; poetry run isup --version ) 1>/dev/null
+          ( set -x ; poetry run isup --help ) 1>/dev/null
