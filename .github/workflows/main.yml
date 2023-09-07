@@ -43,7 +43,6 @@ jobs:
       - name: Install build & test dependencies
         run: |
           pip3 install --disable-pip-version-check --progress-bar off 'poetry'
-          poetry config --no-interaction virtualenvs.create false
           apt-get update
           apt-get install --assume-yes direnv
           apt-get install --assume-yes curl
