@@ -62,3 +62,11 @@ jobs:
         run: |
           ( set -x ; poetry run isup --version ) 1>/dev/null
           ( set -x ; poetry run isup --help ) 1>/dev/null
+
+      - name: Ship a release
+        uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v0.1.15
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            dist/downforeveryone*.whl
+            dist/downforeveryone*.tar.gz
