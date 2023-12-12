@@ -20,7 +20,7 @@ from json.decoder import JSONDecodeError
 from typing import Any, Dict, Tuple
 
 import requests
-from requests.exceptions import RequestException
+from requests.exceptions import RequestException, Timeout
 
 from downforeveryone import cli
 from downforeveryone.constants import API_URL, QUERY_HEADERS
@@ -67,6 +67,8 @@ def isitup(url: str) -> Tuple[str, int]:
             API_URL.format(domain=url),
             headers=QUERY_HEADERS,
         )
+    except Timeout:
+        return "Network timeout.", 3
     except RequestException as rexc:
         title = type(rexc).__name__
         message = str(rexc)

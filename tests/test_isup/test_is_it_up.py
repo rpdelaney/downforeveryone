@@ -1,7 +1,7 @@
 import json
 
 import responses
-from requests.exceptions import RequestException
+from requests.exceptions import RequestException, Timeout
 
 from downforeveryone import isup
 
@@ -65,4 +65,18 @@ def test_isup_handles_request_exception(fake_response_args):
     result_message, result_status = isup.isitup(__TEST_URL__)
 
     assert result_message == "RequestException: Exception message."
+    assert result_status == 3
+
+
+@responses.activate
+def test_isup_handles_timeout_exception():
+    responses.add(
+        responses.GET,
+        isup.API_URL.format(domain=__TEST_URL__),
+        body=Timeout(),
+    )
+
+    result_message, result_status = isup.isitup(__TEST_URL__)
+
+    assert result_message == "Network timeout."
     assert result_status == 3
