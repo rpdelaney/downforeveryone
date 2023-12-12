@@ -71,7 +71,7 @@ def isitup(url: str) -> Tuple[str, int]:
         return "Network timeout.", 3
     except RequestException as rexc:
         title = type(rexc).__name__
-        message = str(rexc)
+        message = str(rexc) if str(rexc) else "Unexpected error occurred."
         return (f"{title}: {message}"), 3
 
     if response.status_code != HTTPStatus.OK.value:

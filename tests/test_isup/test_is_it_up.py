@@ -69,6 +69,19 @@ def test_isup_handles_request_exception(fake_response_args):
 
 
 @responses.activate
+def test_isup_handles_empty_request_exception(fake_response_args):
+    exc = RequestException()
+    fake_response_args["body"] = exc
+
+    responses.add(**fake_response_args)
+
+    result_message, result_status = isup.isitup(__TEST_URL__)
+
+    assert result_message == "RequestException: Unexpected error occurred."
+    assert result_status == 3
+
+
+@responses.activate
 def test_isup_handles_timeout_exception():
     responses.add(
         responses.GET,
