@@ -1,9 +1,9 @@
-import pytest as _pytest
+import pytest
 
 from downforeveryone import __version__, cli
 
 
-@_pytest.fixture()
+@pytest.fixture()
 def mock_argparse(mocker):
     return mocker.patch("argparse.ArgumentParser", autospec=True)
 
@@ -25,4 +25,4 @@ def test_args_added(mock_argparse):
         "--version", action="version", version=f"{__version__}"
     )
 
-    assert mock_add_argument.call_count == 2
+    assert mock_add_argument.call_count == 2  # noqa: PLR2004
