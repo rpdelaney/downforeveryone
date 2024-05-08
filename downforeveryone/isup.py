@@ -18,7 +18,7 @@ import sys
 import traceback
 from http import HTTPStatus
 from json.decoder import JSONDecodeError
-from typing import Any, Dict, Tuple
+from typing import Any
 
 import requests
 from requests.exceptions import RequestException, Timeout
