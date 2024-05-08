@@ -98,7 +98,7 @@ def main() -> None:
 
     try:
         message, exit_code = isitup(args.url)
-    except Exception:
+    except Exception:  # noqa: BLE001
         exit_code = 3
         traceback.print_exc()
     else:
