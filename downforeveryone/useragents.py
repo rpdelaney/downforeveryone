@@ -6,9 +6,9 @@ from pathlib import Path
 from typing import cast
 
 
-root_dir = Path(__file__).parent
+_ROOT_DIR = Path(__file__).parent
 
-with Path.open(root_dir, "useragents.json") as f:
+with Path.open(Path(_ROOT_DIR, "useragents.json")) as f:
     USER_AGENTS = json.load(f)
 
 
