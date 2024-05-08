@@ -16,39 +16,12 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
 ]
 
-[tool.black]
-line-length = 79
-target_version = [ "py38",]
-
-[tool.isort]
-color_output = true
-combine_star = true
-group_by_package = true
-indent = "    "
-multi_line_output = 3
-remove_redundant_aliases = true
-skip_gitignore = true
-use_parentheses = true
-include_trailing_comma = true  # this prevents isort from fighting with black
-
 [tool.poetry.dependencies]
 python = ">=3.7, <4.0"
 requests = "^2.22"
 
 [tool.poetry.group.dev.dependencies]
-black = "*"
 cohesion = "*"
-flake8 = "*"
-flake8-annotations-complexity = "*"
-flake8-breakpoint = "*"
-flake8-bugbear = "*"
-flake8-builtins = "*"
-flake8-comprehensions = "*"
-flake8-docstrings = "*"
-flake8-fixme = "*"
-flake8-pie = "*"
-flake8-pytest-style = "*"
-flake8-simplify = "*"
 mock = "*"
 mypy = "*"
 pytest = "*"
@@ -70,10 +43,6 @@ addopts = "--cov=downforeveryone --strict-markers --strict-config"
 filterwarnings = ["error"]
 xfail_strict = true
 mock_use_standalone_module = true
-
-[tool.poetry.dev-dependencies.isort]
-version = "^5.4"
-extras = [ "pyproject",]
 
 [tool.mypy]
 check_untyped_defs = true
