@@ -1,5 +1,4 @@
-import os
-import pathlib
+from pathlib import Path
 
 import semver
 import toml
@@ -20,8 +19,8 @@ def test_version_is_semver():
 
 def test_version_matches_pyproject():
     """Verify that the version matches the build system."""
-    root_dir = pathlib.Path(__file__).parent.parent.parent
-    with open(os.path.join(root_dir, "pyproject.toml")) as f:
+    root_dir = Path(__file__).parent.parent.parent
+    with Path.open(Path(root_dir, "pyproject.toml")) as f:
         pyproject = toml.load(f)
         pyproject_version = pyproject.get("tool").get("poetry").get("version")
 
