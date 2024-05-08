@@ -1,9 +1,9 @@
-import pytest as _pytest
+import pytest
 
 from downforeveryone import useragents
 
 
-@_pytest.mark.parametrize("execution_number", range(20))
+@pytest.mark.parametrize("execution_number", range(20))
 def test_string_returned(execution_number):
     result = useragents.random_agent()
     assert isinstance(result, str)

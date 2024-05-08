@@ -1,9 +1,9 @@
-import pytest as _pytest
+import pytest
 
 from downforeveryone import isup
 
 
-@_pytest.mark.parametrize(
+@pytest.mark.parametrize(
     ("response", "expected"),
     [
         ({"statusCode": 429, "isDown": True}, 0),
@@ -19,7 +19,7 @@ def test_return_values(response, expected):
     assert isup._handle_response(response)[1] == expected
 
 
-@_pytest.mark.parametrize(
+@pytest.mark.parametrize(
     ("fake_response", "expected_message", "expected_status"),
     [
         (

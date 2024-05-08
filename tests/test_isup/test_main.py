@@ -1,4 +1,4 @@
-import pytest as _pytest
+import pytest
 
 from downforeveryone import isup
 
@@ -36,7 +36,7 @@ def test_exception_prints_traceback(
     mock_traceback.assert_called_once_with()
 
 
-@_pytest.mark.parametrize(
+@pytest.mark.parametrize(
     ("message", "exit_code", "stdout", "stderr"),
     [
         ("test message", 0, "test message\n", ""),
