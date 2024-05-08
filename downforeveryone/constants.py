@@ -1,3 +1,5 @@
+"""Constants and hard-coded values."""
+
 from types import MappingProxyType
 
 from downforeveryone import useragents
@@ -16,3 +18,11 @@ QUERY_HEADERS = MappingProxyType(
         "Connection": "keep-alive",
     }
 )
+
+
+class ExitCodes:
+    """Map of statues to exit codes."""
+
+    EVERYONE: int = 0
+    YOU: int = 1
+    FAIL: int = 3
