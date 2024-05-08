@@ -45,15 +45,14 @@ def test_exception_prints_traceback(
     ],
 )
 def test_output(
+    capsys,
+    exit_code,
+    message,
     mock_cli_args,
     mock_isitup,
     mock_sys_exit,
-    capsys,
-    mocker,
-    message,
-    exit_code,
-    stdout,
     stderr,
+    stdout,
 ):
     mock_isitup.return_value = (message, exit_code)
 
