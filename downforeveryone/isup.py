@@ -69,6 +69,7 @@ def isitup(url: str) -> tuple[str, int]:
         response = requests.get(
             API_URL.format(domain=url),
             headers=QUERY_HEADERS,
+            timeout=5,
         )
     except Timeout:
         return "Network timeout.", 3
