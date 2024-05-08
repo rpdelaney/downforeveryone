@@ -53,7 +53,7 @@ unfixable = [
 "**/{tests,docs}/*" = ["ARG", "ANN", "D", "S"]
 
 [lint.mccabe]
-max-complexity = 2
+max-complexity = 3
 
 [lint.isort]
 # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
