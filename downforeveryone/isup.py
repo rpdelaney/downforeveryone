@@ -24,7 +24,7 @@ import requests
 from requests.exceptions import RequestException, Timeout
 
 from downforeveryone import cli
-from downforeveryone.constants import API_URL, QUERY_HEADERS
+from downforeveryone.constants import API_URL, QUERY_HEADERS, ExitCodes
 
 
 def _handle_response(response: dict[str, Any]) -> tuple[str, int]:
@@ -43,13 +43,13 @@ def _handle_response(response: dict[str, Any]) -> tuple[str, int]:
     isdown = response.get("isDown")
 
     if isdown is True:
-        return "down for everyone.", 0
+        return "down for everyone.", ExitCodes.EVERYONE
     if isdown is False:
-        return "just you.", 1
+        return "just you.", ExitCodes.YOU
 
     return (
         f"There was a problem with the request. response was:\n{response}"
-    ), 3
+    ), ExitCodes.FAIL
 
 
 def isitup(url: str) -> tuple[str, int]:
@@ -72,22 +72,22 @@ def isitup(url: str) -> tuple[str, int]:
             timeout=5,
         )
     except Timeout:
-        return "Network timeout.", 3
+        return "Network timeout.", ExitCodes.FAIL
     except RequestException as rexc:
         title = type(rexc).__name__
         message = str(rexc) if str(rexc) else "Unexpected error occurred."
-        return (f"{title}: {message}"), 3
+        return (f"{title}: {message}"), ExitCodes.FAIL
 
     if response.status_code != HTTPStatus.OK.value:
         status_name = HTTPStatus(response.status_code).description
-        return (f"{response.status_code} {status_name}"), 3
+        return (f"{response.status_code} {status_name}"), ExitCodes.FAIL
 
     try:
         jsondata = response.json()
     except JSONDecodeError as jde:
         title = type(jde).__name__
         message = str(jde)
-        return (f"{title}: {message}"), 3
+        return (f"{title}: {message}"), ExitCodes.FAIL
 
     return _handle_response(jsondata)
 
@@ -99,10 +99,14 @@ def main() -> None:
     try:
         message, exit_code = isitup(args.url)
     except Exception:  # noqa: BLE001
-        exit_code = 3
+        message, exit_code = (
+            "An unhandled exception occurred.",
+            ExitCodes.FAIL,
+        )
         traceback.print_exc()
-    else:
-        output_device = sys.stderr if exit_code == 3 else sys.stdout
-        print(message, file=output_device)
+
+    device = sys.stderr if exit_code == ExitCodes.FAIL else sys.stdout
+
+    print(message, file=device)
 
     sys.exit(exit_code)
