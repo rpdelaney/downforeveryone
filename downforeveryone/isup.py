@@ -44,7 +44,7 @@ def _handle_response(response: dict[str, Any]) -> tuple[str, int]:
 
     if isdown is True:
         return "down for everyone.", 0
-    elif isdown is False:
+    if isdown is False:
         return "just you.", 1
 
     return (
