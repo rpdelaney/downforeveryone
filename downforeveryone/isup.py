@@ -52,7 +52,7 @@ def _handle_response(response: dict[str, Any]) -> tuple[str, int]:
     ), ExitCodes.FAIL
 
 
-def isitup(url: str) -> tuple[str, int]:
+def isitup(url: str) -> tuple[str, int]:  # noqa: C901
     """Check if a URL is up. Returns a status code.
 
     Args:
