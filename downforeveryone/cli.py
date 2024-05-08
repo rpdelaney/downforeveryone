@@ -2,6 +2,7 @@
 
 Call parse_args() to return an argument parser namespace
 """
+
 import argparse
 
 from downforeveryone import __version__

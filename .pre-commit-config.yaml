@@ -68,6 +68,18 @@ repos:
         files: 'pyproject\.toml|downforeveryone/__init__.py'
         pass_filenames: false
 
+      - id: ruff
+        name: lint with ruff
+        language: system
+        entry: poetry run ruff check --fix
+        types: [python]
+
+      - id: ruff
+        name: lint with ruff
+        language: system
+        entry: poetry run ruff format
+        types: [python]
+
       - id: mypy
         name: mypy
         language: system

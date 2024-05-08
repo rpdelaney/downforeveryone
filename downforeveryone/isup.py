@@ -13,6 +13,7 @@ Usage example when importing this module:
     elif isup_status == 3:
         print("there was an error")
 """
+
 import sys
 import traceback
 from http import HTTPStatus
@@ -26,10 +27,11 @@ from downforeveryone import cli
 from downforeveryone.constants import API_URL, QUERY_HEADERS
 
 
-def _handle_response(response: Dict[str, Any]) -> Tuple[str, int]:
+def _handle_response(response: dict[str, Any]) -> tuple[str, int]:
     """Handle isup.me API response.
 
     Args:
+    ----
         response: A dict representation of the received json response
 
     Returns: A status code
@@ -50,10 +52,11 @@ def _handle_response(response: Dict[str, Any]) -> Tuple[str, int]:
     ), 3
 
 
-def isitup(url: str) -> Tuple[str, int]:
+def isitup(url: str) -> tuple[str, int]:
     """Check if a URL is up. Returns a status code.
 
     Args:
+    ----
         url: URL to the site to be checked
 
     Returns: A human-readable status message, and a status code

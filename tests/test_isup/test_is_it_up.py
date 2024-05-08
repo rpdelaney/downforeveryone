@@ -5,6 +5,7 @@ from requests.exceptions import RequestException, Timeout
 
 from downforeveryone import isup
 
+
 __TEST_URL__ = "https://foo.bar"
 
 

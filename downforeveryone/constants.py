@@ -2,6 +2,7 @@ from types import MappingProxyType
 
 from downforeveryone import useragents
 
+
 API_URL = "https://downforeveryoneorjustme.com/api/httpcheck/{domain}"
 
 QUERY_HEADERS = MappingProxyType(

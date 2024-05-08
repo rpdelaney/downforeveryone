@@ -3,7 +3,7 @@ import pytest as _pytest
 from downforeveryone import __version__, cli
 
 
-@_pytest.fixture
+@_pytest.fixture()
 def mock_argparse(mocker):
     return mocker.patch("argparse.ArgumentParser", autospec=True)
 
