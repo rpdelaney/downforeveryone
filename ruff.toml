@@ -1,0 +1,73 @@
+target-version = "py312"
+
+line-length = 79
+
+exclude = [
+    ".direnv",
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".venv",
+    "__pypackages__",
+    "dist",
+]
+
+[lint]
+select = [ "ALL" ]
+ignore = [
+    "ANN",      # we have mypy for this
+    "D203",     # prefer D211 `no-blank-line-before-class`
+    "D213",     # prefer D212 `multi-line-summary-first-line`
+    "COM812",   # conflicts with black and isort precedent
+    "ISC001",   # to silence ruff warning
+]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = [ "ALL" ]
+unfixable = [
+    "F401",
+    "F841",
+    "F842",
+    "PYI047",
+    # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+    "W191",
+    "E111",
+    "E114",
+    "E117",
+    "D206",
+    "D300",
+    "Q000",
+    "Q001",
+    "Q002",
+    "Q003",
+    "COM812",
+    "COM819",
+    "ISC001",
+    "ISC002",
+    # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+]
+
+[lint.per-file-ignores]
+"__init__.py" = ["D104", "E402"]
+"dumbpw/cli.py" = ["T201"]
+"**/{tests,docs}/*" = ["ARG", "ANN", "D", "S"]
+
+[lint.mccabe]
+max-complexity = 2
+
+[lint.isort]
+# https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+force-single-line = false
+force-wrap-aliases = false
+lines-after-imports = 2
+lines-between-types = 0
+split-on-trailing-comma = false
+
+[format]
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+exclude = ["*.pyi"]
+indent-style = "space"
+line-ending = "auto"
+quote-style = "double"
+skip-magic-trailing-comma = false
