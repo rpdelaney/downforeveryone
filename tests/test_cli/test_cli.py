@@ -25,4 +25,4 @@ def test_args_added(mock_argparse):
         "--version", action="version", version=f"{__version__}"
     )
 
-    assert mock_add_argument.call_count == 2  # noqa: PLR2004
+    assert mock_add_argument.call_count == 2
