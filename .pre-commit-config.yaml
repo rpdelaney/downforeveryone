@@ -69,15 +69,15 @@ repos:
         pass_filenames: false
 
       - id: ruff
-        name: lint python code with ruff
-        language: system
-        entry: poetry run ruff check --fix
-        types: [python]
-
-      - id: ruff
         name: format python code with ruff
         language: system
         entry: poetry run ruff format
+        types: [python]
+
+      - id: ruff
+        name: lint python code with ruff
+        language: system
+        entry: poetry run ruff check --fix
         types: [python]
 
       - id: mypy
