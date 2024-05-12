@@ -56,8 +56,8 @@ jobs:
         run: poetry run pytest --full-trace
       - name: Test basic cli elements
         run: |
-          ( set -x ; poetry run isup --version ) 1>/dev/null
-          ( set -x ; poetry run isup --help ) 1>/dev/null
+          ( set -x ; poetry run isup --version )
+          ( set -x ; poetry run isup --help )
 
   release:
     runs-on: ubuntu-latest
