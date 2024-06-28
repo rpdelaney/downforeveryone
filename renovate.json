@@ -33,7 +33,7 @@
         {
             "matchManagers": ["github-actions"],
             "groupName": "github-actions",
-            "automerge": true
+            "automerge": false
         }
     ],
     "separateMinorPatch": false
