@@ -6,7 +6,7 @@ downforeveryone
    :target: https://github.com/rpdelaney/downforeveryone/actions/workflows/main.yml
 .. |LICENSE| image:: https://img.shields.io/badge/license-Apache%202.0-informational
    :target: https://www.apache.org/licenses/LICENSE-2.0.txt
-.. |MAINTAINED| image:: https://img.shields.io/maintenance/yes/2024?logoColor=informational
+.. |MAINTAINED| image:: https://img.shields.io/maintenance/yes/2025?logoColor=informational
 .. |VERSION| image:: https://img.shields.io/pypi/v/downforeveryone
    :target: https://pypi.org/project/downforeveryone
 .. |STYLE| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
