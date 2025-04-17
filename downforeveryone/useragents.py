@@ -14,4 +14,4 @@ with Path.open(Path(_ROOT_DIR, "useragents.json")) as f:
 
 def random_agent() -> str:
     """Return a random user agent string."""
-    return cast(str, random.choice(USER_AGENTS))  # noqa: S311
+    return cast("str", random.choice(USER_AGENTS))  # noqa: S311
