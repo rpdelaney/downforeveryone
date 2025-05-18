@@ -1,7 +1,7 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:base"
+        "config:recommended"
     ],
     "labels": [
         "dependencies"
@@ -10,9 +10,9 @@
         "automerge": true,
         "enabled": true
     },
+    "schedule": ["* 0 * * 0"],
     "packageRules": [
         {
-            "groupName": "dependencies",
             "matchUpdateTypes": [
                 "major"
             ],
@@ -22,7 +22,6 @@
         },
         {
             "automerge": true,
-            "groupName": "dependencies",
             "matchUpdateTypes": [
                 "patch",
                 "pin",
@@ -31,10 +30,22 @@
             ]
         },
         {
-            "matchManagers": ["github-actions"],
+            "matchManagers": [
+                "github-actions"
+            ],
             "groupName": "github-actions",
-            "automerge": false
+            "automerge": false,
+            "schedule": ["* 0 1 * *"],
+            "reviewers": [
+                "rpdelaney"
+            ]
         }
     ],
-    "separateMinorPatch": false
+    "separateMinorPatch": false,
+    "prHourlyLimit": 0,
+    "prConcurrentLimit": 0,
+    "pre-commit": {
+      "enabled": true,
+      "automerge": true
+    }
 }
