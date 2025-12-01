@@ -1,56 +1,56 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:recommended"
+    '$schema': 'https://docs.renovatebot.com/renovate-schema.json',
+    'extends': [
+        'config:recommended'
     ],
-    "labels": [
-        "dependencies"
+    'labels': [
+        'dependencies'
     ],
-    "lockFileMaintenance": {
-        "automerge": true,
-        "enabled": true
+    'lockFileMaintenance': {
+        'automerge': true,
+        'enabled': true
     },
-    "schedule": ["* 0 * * 0"],
-    "packageRules": [
+    'schedule': ['* 0 * * 0'],
+    'packageRules': [
         {
-            "matchUpdateTypes": [
-                "major"
+            'matchUpdateTypes': [
+                'major'
             ],
-            "reviewers": [
-                "rpdelaney"
+            'reviewers': [
+                'rpdelaney'
             ]
         },
         {
-            "automerge": true,
-            "matchUpdateTypes": [
-                "patch",
-                "pin",
-                "digest",
-                "minor"
+            'automerge': true,
+            'matchUpdateTypes': [
+                'patch',
+                'pin',
+                'digest',
+                'minor'
             ]
         },
         {
-            "matchManagers": [
-                "github-actions"
+            'matchManagers': [
+                'github-actions'
             ],
-            "groupName": "github-actions",
-            "automerge": false,
-            "schedule": ["* 0 1 * *"],
-            "reviewers": [
-                "rpdelaney"
+            'groupName': 'github-actions',
+            'automerge': false,
+            'schedule': ['* 0 1 * *'],
+            'reviewers': [
+                'rpdelaney'
             ]
         }
     ],
-    "python": {
-        "ignorePaths": [
-            ".python-version"
+    'python': {
+        'ignorePaths': [
+            '.python-version'
         ]
     },
-    "separateMinorPatch": false,
-    "prHourlyLimit": 0,
-    "prConcurrentLimit": 0,
-    "pre-commit": {
-      "enabled": true,
-      "automerge": true
+    'separateMinorPatch': false,
+    'prHourlyLimit': 0,
+    'prConcurrentLimit': 0,
+    'pre-commit': {
+      'enabled': true,
+      'automerge': true
     }
 }
