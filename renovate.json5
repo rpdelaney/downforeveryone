@@ -41,11 +41,6 @@
             ]
         }
     ],
-    "python": {
-        "ignorePaths": [
-            ".github/workflows/**"
-        ],
-    },
     "separateMinorPatch": false,
     "prHourlyLimit": 0,
     "prConcurrentLimit": 0,
