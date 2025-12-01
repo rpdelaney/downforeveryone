@@ -1,56 +1,63 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        "config:recommended"
+    $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+    extends: [
+        'config:recommended',
     ],
-    "labels": [
-        "dependencies"
+    labels: [
+        'dependencies',
     ],
-    "lockFileMaintenance": {
-        "automerge": true,
-        "enabled": true
+    lockFileMaintenance: {
+        automerge: true,
+        enabled: true,
     },
-    "schedule": ["* 0 * * 0"],
-    "packageRules": [
+    schedule: [
+        '* 0 * * 0',
+    ],
+    packageRules: [
         {
-            "matchUpdateTypes": [
-                "major"
+            matchCategories: [
+                'python',
             ],
-            "reviewers": [
-                "rpdelaney"
-            ]
+            ignorePaths: [
+                '.python-version',
+            ],
         },
         {
-            "automerge": true,
-            "matchUpdateTypes": [
-                "patch",
-                "pin",
-                "digest",
-                "minor"
-            ]
+            matchUpdateTypes: [
+                'major',
+            ],
+            reviewers: [
+                'rpdelaney',
+            ],
         },
         {
-            "matchManagers": [
-                "github-actions"
+            automerge: true,
+            matchUpdateTypes: [
+                'patch',
+                'pin',
+                'digest',
+                'minor',
             ],
-            "groupName": "github-actions",
-            "automerge": false,
-            "schedule": ["* 0 1 * *"],
-            "reviewers": [
-                "rpdelaney"
-            ]
-        }
+        },
+        {
+            matchManagers: [
+                'github-actions',
+            ],
+            groupName: 'github-actions',
+            automerge: false,
+            schedule: [
+                '* 0 1 * *',
+            ],
+            reviewers: [
+                'rpdelaney',
+            ],
+        },
     ],
-    "python": {
-        "ignorePaths": [
-            ".python-version"
-        ]
+    separateMinorPatch: false,
+    prHourlyLimit: 0,
+    prConcurrentLimit: 0,
+    'pre-commit': {
+        enabled: true,
+        automerge: true,
     },
-    "separateMinorPatch": false,
-    "prHourlyLimit": 0,
-    "prConcurrentLimit": 0,
-    "pre-commit": {
-      "enabled": true,
-      "automerge": true
-    }
 }
