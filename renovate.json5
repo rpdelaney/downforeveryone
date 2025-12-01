@@ -41,6 +41,11 @@
             ]
         }
     ],
+    "python": {
+        "ignorePaths": [
+            ".python-version"
+        ]
+    },
     "separateMinorPatch": false,
     "prHourlyLimit": 0,
     "prConcurrentLimit": 0,
