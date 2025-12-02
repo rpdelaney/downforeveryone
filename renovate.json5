@@ -13,15 +13,10 @@
     schedule: [
         '* 0 * * 0',
     ],
+    ignorePaths: [
+        '.python-version',
+    ],
     packageRules: [
-        {
-            matchCategories: [
-                'python',
-            ],
-            ignorePaths: [
-                '.python-version',
-            ],
-        },
         {
             matchUpdateTypes: [
                 'major',
