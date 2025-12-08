@@ -11,7 +11,7 @@
         enabled: true,
     },
     schedule: [
-        '* 0 * * 0',
+        '* 0-4 * * 0',
     ],
     ignorePaths: [
         '.python-version',
