@@ -78,16 +78,19 @@ def isitup(url: str) -> tuple[str, int]:  # noqa: C901
         message = str(rexc) if str(rexc) else "Unexpected error occurred."
         return (f"{title}: {message}"), ExitCodes.FAIL
 
-    if response.status_code != HTTPStatus.OK.value:
-        status_name = HTTPStatus(response.status_code).description
-        return (f"{response.status_code} {status_name}"), ExitCodes.FAIL
-
     try:
         jsondata = response.json()
     except JSONDecodeError as jde:
         title = type(jde).__name__
         message = str(jde)
         return (f"{title}: {message}"), ExitCodes.FAIL
+
+    if response.status_code != HTTPStatus.OK:
+        status_name = HTTPStatus(response.status_code).description
+        return (f"{response.status_code} {status_name}"), ExitCodes.FAIL
+    if jsondata.get("statusCode") != HTTPStatus.OK:
+        status_name = jsondata.get("statusText")
+        return (f"{jsondata.get('statusCode')} {status_name}"), ExitCodes.FAIL
 
     return _handle_response(jsondata)
 
